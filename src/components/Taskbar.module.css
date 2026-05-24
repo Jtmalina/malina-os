@@ -1,0 +1,87 @@
+.taskbar {
+  height: 28px;
+  background-color: var(--win-gray);
+  border-top: 2px solid var(--win-white);
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  gap: 4px;
+  z-index: 9999;
+}
+
+.startButton {
+  font-weight: bold;
+  height: 22px;
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.startIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.startIconPlaceholder {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.tasks {
+  flex: 1;
+  display: flex;
+  gap: 4px;
+  height: 100%;
+}
+
+.taskButton {
+  max-width: 160px;
+  flex: 1;
+  justify-content: flex-start;
+  font-size: 11px;
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.taskIcon {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.taskTitle {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.activeTask {
+  border-color: var(--win-dark-gray) var(--win-white) var(--win-white) var(--win-dark-gray);
+  background-color: #e0e0e0;
+  box-shadow: inset 1px 1px var(--win-black);
+}
+
+.tray {
+  height: 22px;
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid var(--win-dark-gray);
+  border-left: 1px solid var(--win-dark-gray);
+  border-right: 1px solid var(--win-white);
+  border-bottom: 1px solid var(--win-white);
+  box-shadow: inset 1px 1px var(--win-black);
+  background-color: var(--win-gray);
+}
+
+.time {
+  font-size: 12px;
+  padding: 0 4px;
+}

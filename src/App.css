@@ -1,0 +1,32 @@
+.desktop {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--win-teal);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.icons-container {
+  flex: 1;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 20px;
+}
+
+.windows-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 30px); /* 30px is taskbar height */
+  pointer-events: none; /* Let clicks pass to icons unless a window is there */
+}
+
+.windows-container > * {
+  pointer-events: auto;
+}

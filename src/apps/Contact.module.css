@@ -1,0 +1,51 @@
+.container {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background-color: var(--win-gray);
+  height: 100%;
+}
+
+.header {
+  font-size: 12px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.field label {
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.field input, .field textarea {
+  padding: 4px;
+  font-family: inherit;
+  font-size: 12px;
+  background-color: var(--win-white);
+  border: 2px solid;
+  /* Utility classes from index.css will be used, but we define here for safety if needed */
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.statusBar {
+  margin-top: auto;
+  padding: 2px 5px;
+  font-size: 11px;
+  background-color: var(--win-gray);
+}

@@ -1,0 +1,82 @@
+:root {
+  /* Windows 95 Colors */
+  --win-gray: #c0c0c0;
+  --win-white: #ffffff;
+  --win-dark-gray: #808080;
+  --win-black: #000000;
+  --win-teal: #008080;
+  --win-blue: #000080;
+  --win-blue-light: #1084d0;
+
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fallback for MS Sans Serif */
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: var(--win-black);
+  background-color: var(--win-teal);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Classic Bevel Styles */
+.outset {
+  border-top: 2px solid var(--win-white);
+  border-left: 2px solid var(--win-white);
+  border-right: 2px solid var(--win-dark-gray);
+  border-bottom: 2px solid var(--win-dark-gray);
+}
+
+.inset {
+  border-top: 2px solid var(--win-dark-gray);
+  border-left: 2px solid var(--win-dark-gray);
+  border-right: 2px solid var(--win-white);
+  border-bottom: 2px solid var(--win-white);
+}
+
+.outset-deep {
+  border: 2px solid;
+  border-color: var(--win-white) var(--win-dark-gray) var(--win-dark-gray) var(--win-white);
+  box-shadow: inset 1px 1px var(--win-white), inset -1px -1px var(--win-black);
+}
+
+button {
+  background-color: var(--win-gray);
+  border: 2px solid;
+  border-color: var(--win-white) var(--win-dark-gray) var(--win-dark-gray) var(--win-white);
+  padding: 2px 6px;
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button:active {
+  border-color: var(--win-dark-gray) var(--win-white) var(--win-white) var(--win-dark-gray);
+  padding: 3px 5px 1px 7px; /* Shift content slightly when pressed */
+}
+
+button:focus {
+  outline: 1px dotted var(--win-black);
+  outline-offset: -4px;
+}

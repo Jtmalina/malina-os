@@ -1,0 +1,134 @@
+.biosContainer, .startingContainer, .splashContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  z-index: 100000;
+  color: #fff;
+}
+
+/* BIOS POST */
+.biosContainer {
+  padding: 20px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.biosText {
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+/* Starting Text */
+.startingContainer {
+  display: flex;
+  align-items: flex-start;
+  padding: 20px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.startingText {
+  font-size: 16px;
+}
+
+.skipHint {
+  font-size: 12px;
+  color: #666;
+  font-style: italic;
+}
+
+/* Splash Screen */
+.splashContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+/* CSS Windows Flag Logo */
+.winLogo {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flag {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 4px;
+  transform: skewY(-10deg);
+}
+
+.square {
+  width: 50px;
+  height: 50px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+
+.red { background-color: #ff0000; }
+.green { background-color: #00ff00; }
+.blue { background-color: #0000ff; }
+.yellow { background-color: #ffff00; }
+
+.text {
+  font-size: 24px;
+  font-style: italic;
+  line-height: 1.1;
+  text-align: left;
+}
+
+.text span {
+  font-size: 64px;
+  font-style: normal;
+  font-weight: bold;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.loadingBarContainer {
+  width: 300px;
+  height: 15px;
+  border: 1px solid #fff;
+  padding: 2px;
+}
+
+.loadingBar {
+  height: 100%;
+  width: 30%;
+  background: linear-gradient(90deg, #000 0%, #000080 50%, #000 100%);
+  animation: loading 2s infinite linear;
+}
+
+@keyframes loading {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(330%); }
+}
+
+.footer p {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+  animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
