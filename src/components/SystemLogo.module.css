@@ -1,0 +1,55 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.small {
+  width: 16px;
+  height: 16px;
+}
+
+.large {
+  width: 120px;
+  height: 120px;
+}
+
+.diamond {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  width: 70%; /* Smaller than container to allow for rotation overflow */
+  height: 70%;
+  transform: rotate(45deg);
+  gap: 1px;
+}
+
+.large .diamond {
+  gap: 2px;
+}
+
+.quadrant {
+  width: 100%;
+  height: 100%;
+}
+
+.red { 
+  background-color: #ff0000;
+  box-shadow: inset 1px 1px var(--win-white), inset -1px -1px #800000;
+}
+.green { 
+  background-color: #00ff00; 
+  box-shadow: inset 1px 1px var(--win-white), inset -1px -1px #008000;
+}
+.blue { 
+  background-color: #0000ff; 
+  box-shadow: inset 1px 1px var(--win-white), inset -1px -1px #000080;
+}
+.yellow { 
+  background-color: #ffff00; 
+  box-shadow: inset 1px 1px var(--win-white), inset -1px -1px #808000;
+}
+
+.large .quadrant {
+  box-shadow: inset 4px 4px var(--win-white), inset -4px -4px rgba(0,0,0,0.3);
+}

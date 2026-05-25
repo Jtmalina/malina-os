@@ -23,7 +23,7 @@ const StartMenu: React.FC<StartMenuProps> = ({ isOpen, onClose, items }) => {
       <div className={styles.startMenu}>
         <div className={styles.sidebar}>
           <div className={styles.sidebarText}>
-            Windows<span>95</span>
+            Malina<span>-OS</span>
           </div>
         </div>
         <div className={styles.menuItems}>

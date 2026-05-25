@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import './App.css'
 import Taskbar from './components/Taskbar'
 import Window from './components/Window'
@@ -8,7 +8,13 @@ import Projects from './apps/Projects'
 import Contact from './apps/Contact'
 import Paint from './apps/Paint'
 import MediaPlayer from './apps/MediaPlayer'
+import Minesweeper from './apps/Minesweeper'
+import Marathon from './apps/Marathon'
+import Browser from './apps/Browser'
+import ProjectProperties from './apps/ProjectProperties'
 import BootScreen from './components/BootScreen'
+import Dialog from './components/Dialog'
+import { playSound } from './utils/sounds'
 
 import StartMenu from './components/StartMenu'
 
@@ -22,12 +28,12 @@ interface WindowInfo {
   icon: string;
   defaultSize?: { width: number; height: number };
   initialPosition?: { x: number; y: number };
+  hideFromMenu?: boolean;
 }
 
 function App() {
   const [isBooting, setIsBooting] = useState(true);
   const [isStartMenuOpen, setIsStartMenuOpen] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const [windows, setWindows] = useState<WindowInfo[]>([
     {
@@ -54,13 +60,13 @@ function App() {
     },
     {
       id: 'contact',
-      title: 'Contact - Address Book',
+      title: 'Contact - Outlook Express',
       isOpen: false,
       isMinimized: false,
       zIndex: 102,
       content: <Contact />,
       icon: '📞',
-      defaultSize: { width: 400, height: 450 },
+      defaultSize: { width: 550, height: 400 },
       initialPosition: { x: 200, y: 80 },
     },
     {
@@ -84,20 +90,83 @@ function App() {
       icon: '🎬',
       defaultSize: { width: 480, height: 360 },
       initialPosition: { x: 250, y: 150 },
+      hideFromMenu: true,
+    },
+    {
+      id: 'minesweeper',
+      title: 'Minesweeper',
+      isOpen: false,
+      isMinimized: false,
+      zIndex: 105,
+      content: <Minesweeper />,
+      icon: '💣',
+      defaultSize: { width: 220, height: 310 },
+      initialPosition: { x: 300, y: 50 },
+    },
+    {
+      id: 'marathon',
+      title: 'Marathon',
+      isOpen: false,
+      isMinimized: false,
+      zIndex: 106,
+      content: <Marathon onLaunch={(id) => focusWindow(id)} onClose={() => closeWindow('marathon')} />,
+      icon: '🔫',
+      defaultSize: { width: 600, height: 400 },
+      initialPosition: { x: 50, y: 50 },
+    },
+    {
+      id: 'browser',
+      title: 'World Wide Web Browser',
+      isOpen: false,
+      isMinimized: false,
+      zIndex: 107,
+      content: <Browser />,
+      icon: '🌐',
+      defaultSize: { width: 700, height: 500 },
+      initialPosition: { x: 120, y: 120 },
+    },
+    {
+      id: 'portfolio-properties',
+      title: 'Malina-OS Properties',
+      isOpen: false,
+      isMinimized: false,
+      zIndex: 108,
+      content: <ProjectProperties />,
+      icon: '🎨',
+      defaultSize: { width: 400, height: 450 },
+      initialPosition: { x: 300, y: 100 },
+      hideFromMenu: true,
     },
   ]);
 
   const [activeWindowId, setActiveWindowId] = useState<string | null>(null);
+  const [dialog, setDialog] = useState<{ title: string; message: string; onOk: () => void } | null>(null);
 
   const handleBoot = () => {
     setIsBooting(false);
-    if (!audioRef.current) {
-      audioRef.current = new Audio('https://archive.org/download/win95startup/win95startup.mp3');
-    }
-    audioRef.current.play().catch(err => console.error("Audio playback failed:", err));
+    playSound('startup');
+  };
+
+  const showDialog = (title: string, message: string, onOk: () => void) => {
+    playSound('chord');
+    setDialog({ title, message, onOk });
   };
 
   const focusWindow = (id: string) => {
+    if (id === 'malina-os-portfolio') {
+      showDialog('System Message', "You're already inside it", () => {
+        setDialog(null);
+        focusWindow('portfolio-properties');
+      });
+      return;
+    }
+    
+    // Play sound when opening a closed window
+    const win = windows.find(w => w.id === id);
+    if (win && (!win.isOpen || win.isMinimized)) {
+      playSound('ding');
+    }
+
     setActiveWindowId(id);
     setWindows(prev => {
       const maxZ = Math.max(...prev.map(w => w.zIndex), 100);
@@ -106,11 +175,13 @@ function App() {
   };
 
   const closeWindow = (id: string) => {
+    playSound('ding');
     setWindows(prev => prev.map(w => w.id === id ? { ...w, isOpen: false } : w));
     if (activeWindowId === id) setActiveWindowId(null);
   };
 
   const minimizeWindow = (id: string) => {
+    playSound('ding');
     setWindows(prev => prev.map(w => w.id === id ? { ...w, isMinimized: true } : w));
     setActiveWindowId(null);
   };
@@ -129,10 +200,13 @@ function App() {
   };
 
   const toggleStartMenu = () => {
+    if (!isStartMenuOpen) {
+      playSound('ding');
+    }
     setIsStartMenuOpen(!isStartMenuOpen);
   };
 
-  const startMenuItems = windows.map(w => ({
+  const startMenuItems = windows.filter(w => !w.hideFromMenu).map(w => ({
     id: w.id,
     label: w.title.split(' - ')[0],
     icon: w.icon,
@@ -146,7 +220,7 @@ function App() {
   return (
     <div className="desktop">
       <div className="icons-container">
-        {windows.filter(w => w.id !== 'media-player').map(w => (
+        {windows.filter(w => !w.hideFromMenu).map(w => (
           <DesktopIcon 
             key={w.id}
             id={w.id} 
@@ -184,12 +258,20 @@ function App() {
       />
 
       <Taskbar 
-        windows={windows} 
+        windows={windows.filter(w => !w.hideFromMenu || w.isOpen)} 
         activeWindowId={activeWindowId} 
         onTaskClick={toggleWindow}
         onStartClick={toggleStartMenu}
         isStartMenuOpen={isStartMenuOpen}
       />
+
+      {dialog && (
+        <Dialog 
+          title={dialog.title} 
+          message={dialog.message} 
+          onOk={dialog.onOk} 
+        />
+      )}
     </div>
   )
 }

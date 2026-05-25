@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Taskbar.module.css';
+import SystemLogo from './SystemLogo';
 
 interface TaskbarProps {
   windows: Array<{
@@ -39,7 +40,9 @@ const Taskbar: React.FC<TaskbarProps> = ({
         className={`${styles.startButton} ${isStartMenuOpen ? styles.activeTask : ''}`}
         onClick={onStartClick}
       >
-        <div className={styles.startIconPlaceholder}>🪟</div>
+        <div className={styles.startIcon}>
+          <SystemLogo size="small" />
+        </div>
         <span>Start</span>
       </button>
 

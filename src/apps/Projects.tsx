@@ -28,7 +28,13 @@ const Projects: React.FC<ProjectsProps> = ({ onLaunch }) => {
       { name: 'Games', type: 'Folder', size: '--', icon: '📂' },
     ],
     Apps: [
-      { name: 'Win95 Portfolio', type: 'Executable', size: '2.5 MB', icon: '🎨' },
+      { 
+        name: 'Malina-OS Portfolio', 
+        type: 'Executable', 
+        size: '2.5 MB', 
+        icon: '🎨',
+        launchApp: 'malina-os-portfolio'
+      },
       { 
         name: 'OmniList', 
         type: 'Executable', 
@@ -43,8 +49,7 @@ const Projects: React.FC<ProjectsProps> = ({ onLaunch }) => {
         type: 'Executable', 
         size: '120 MB', 
         icon: '🔫', 
-        url: 'https://www.bungie.net/7/en/Marathon/Credits',
-        launchApp: 'media-player'
+        launchApp: 'marathon'
       },
       { 
         name: 'StreetBrawler', 

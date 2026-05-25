@@ -1,0 +1,76 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.dialog {
+  width: 300px;
+  background-color: var(--win-gray);
+  border: 2px solid;
+  border-color: var(--win-white) var(--win-dark-gray) var(--win-dark-gray) var(--win-white);
+  box-shadow: 1px 1px var(--win-black);
+  display: flex;
+  flex-direction: column;
+}
+
+.titleBar {
+  background-color: var(--win-blue);
+  color: white;
+  padding: 2px 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.titleText {
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.closeBtn {
+  width: 14px;
+  height: 14px;
+  padding: 0;
+  font-size: 9px;
+  line-height: 1;
+}
+
+.content {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.body {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.icon {
+  font-size: 32px;
+}
+
+.message {
+  font-size: 12px;
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+}
+
+.okBtn {
+  min-width: 75px;
+  padding: 4px;
+}

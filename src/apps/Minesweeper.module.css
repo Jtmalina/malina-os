@@ -1,0 +1,158 @@
+.gameContainer {
+  background-color: var(--win-gray);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+  height: 100%;
+}
+
+.menuBar {
+  width: 100%;
+  display: flex;
+  padding: 2px 4px;
+  gap: 12px;
+  font-size: 11px;
+  border-bottom: 1px solid var(--win-dark-gray);
+  background-color: var(--win-gray);
+}
+
+.menuItem {
+  cursor: default;
+  position: relative;
+}
+
+.menuItem:hover {
+  background-color: var(--win-blue);
+  color: white;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--win-gray);
+  border: 1px solid var(--win-black);
+  box-shadow: 2px 2px var(--win-black);
+  z-index: 1000;
+  min-width: 120px;
+}
+
+.dropdownItem {
+  padding: 2px 20px 2px 20px;
+  color: var(--win-black);
+  white-space: nowrap;
+  font-size: 11px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.dropdownItem:hover {
+  background-color: var(--win-blue);
+  color: white;
+}
+
+.check {
+  position: absolute;
+  left: 5px;
+}
+
+.mainGame {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.header {
+  width: 100%;
+  padding: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--win-gray);
+  border: 2px solid;
+  border-color: var(--win-dark-gray) var(--win-white) var(--win-white) var(--win-dark-gray);
+}
+
+.counter {
+  background-color: #000;
+  color: #ff0000;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 2px 5px;
+  width: 55px;
+  text-align: center;
+  border: 1px solid var(--win-dark-gray);
+}
+
+.resetBtn {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--win-gray);
+  border: 2px solid;
+  border-color: var(--win-white) var(--win-dark-gray) var(--win-dark-gray) var(--win-white);
+}
+
+.resetBtn:active {
+  border-color: var(--win-dark-gray) var(--win-white) var(--win-white) var(--win-dark-gray);
+}
+
+.board {
+  padding: 4px;
+  background-color: var(--win-gray);
+  border: 3px solid;
+  border-color: var(--win-dark-gray) var(--win-white) var(--win-white) var(--win-dark-gray);
+  overflow: auto;
+  max-width: 100%;
+}
+
+.row {
+  display: flex;
+}
+
+.cell {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: var(--win-gray);
+  border: 2px solid;
+  border-color: var(--win-white) var(--win-dark-gray) var(--win-dark-gray) var(--win-white);
+  cursor: default;
+}
+
+.cell.revealed {
+  border: 1px solid var(--win-dark-gray);
+  background-color: #c0c0c0;
+}
+
+.mine {
+  font-size: 12px;
+}
+
+.flag {
+  font-size: 12px;
+}
+
+.num1 { color: blue; }
+.num2 { color: green; }
+.num3 { color: red; }
+.num4 { color: darkblue; }
+.num5 { color: darkred; }
+.num6 { color: teal; }
+.num7 { color: black; }
+.num8 { color: gray; }

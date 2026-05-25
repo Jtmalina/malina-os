@@ -1,51 +1,185 @@
-.container {
-  padding: 10px;
+.outlook {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  background-color: var(--win-gray);
   height: 100%;
+  background-color: var(--win-gray);
+  color: var(--win-black);
+  overflow: hidden;
 }
 
-.header {
-  font-size: 12px;
+.menuBar {
+  display: flex;
+  padding: 2px 4px;
+  gap: 12px;
+  font-size: 11px;
+  border-bottom: 1px solid var(--win-dark-gray);
 }
 
-.form {
+.menuItem {
+  cursor: default;
+}
+
+.menuItem::first-letter {
+  text-decoration: underline;
+}
+
+.toolbar {
+  display: flex;
+  padding: 4px;
+  gap: 2px;
+  background-color: var(--win-gray);
+  border-bottom: 1px solid var(--win-dark-gray);
+  box-shadow: 0 1px var(--win-white);
+}
+
+.toolButton {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 6px;
+  border: 1px solid transparent;
+  background: transparent;
+  min-width: 45px;
 }
 
-.field {
+.toolButton:hover {
+  border-color: var(--win-white) var(--win-dark-gray) var(--win-dark-gray) var(--win-white);
+}
+
+.toolIcon {
+  font-size: 20px;
+}
+
+.toolLabel {
+  font-size: 10px;
+  margin-top: 2px;
+}
+
+.mainView {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  padding: 2px;
+  gap: 2px;
+}
+
+.sidebar {
+  width: 150px;
+  background-color: var(--win-white);
+  border: 2px solid;
+  border-color: var(--win-dark-gray) var(--win-white) var(--win-white) var(--win-dark-gray);
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 4px;
 }
 
-.field label {
+.sidebarHeader {
+  background-color: var(--win-blue);
+  color: white;
+  padding: 2px 5px;
   font-size: 11px;
   font-weight: bold;
 }
 
-.field input, .field textarea {
-  padding: 4px;
-  font-family: inherit;
-  font-size: 12px;
-  background-color: var(--win-white);
-  border: 2px solid;
-  /* Utility classes from index.css will be used, but we define here for safety if needed */
+.folderList {
+  padding: 5px 0;
+  display: flex;
+  flex-direction: column;
 }
 
-.actions {
+.folderItem {
+  padding: 2px 5px 2px 20px;
+  font-size: 11px;
+  cursor: default;
   display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.folderItem:hover {
+  background-color: #f0f0f0;
+}
+
+.folderItemActive {
+  background-color: var(--win-blue);
+  color: white;
+}
+
+.contentArea {
+  flex: 1;
+  background-color: var(--win-white);
+  border: 2px solid;
+  border-color: var(--win-dark-gray) var(--win-white) var(--win-white) var(--win-dark-gray);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.messageHeader {
+  padding: 10px;
+  border-bottom: 1px solid var(--win-dark-gray);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background-color: #f0f0f0;
+}
+
+.headerField {
+  display: flex;
+  align-items: center;
   gap: 10px;
-  margin-top: 5px;
+}
+
+.headerLabel {
+  width: 60px;
+  font-size: 11px;
+  color: var(--win-dark-gray);
+  text-align: right;
+}
+
+.headerInput {
+  flex: 1;
+  border: 1px solid var(--win-dark-gray);
+  padding: 2px 4px;
+  font-size: 12px;
+  background-color: white;
+}
+
+.messageBody {
+  flex: 1;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.messageTextarea {
+  flex: 1;
+  border: none;
+  resize: none;
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
 }
 
 .statusBar {
-  margin-top: auto;
-  padding: 2px 5px;
-  font-size: 11px;
+  height: 20px;
   background-color: var(--win-gray);
+  border-top: 1px solid var(--win-dark-gray);
+  display: flex;
+  align-items: center;
+  padding: 0 5px;
+  font-size: 10px;
+  gap: 10px;
+}
+
+.statusItem {
+  padding-right: 10px;
+  border-right: 1px solid var(--win-dark-gray);
+  box-shadow: 1px 0 var(--win-white);
+}
+
+.statusItem:last-child {
+  border-right: none;
+  box-shadow: none;
 }

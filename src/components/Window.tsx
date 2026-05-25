@@ -31,21 +31,53 @@ const Window: React.FC<WindowProps> = ({
   defaultSize = { width: 400, height: 300 },
 }) => {
   const [position, setPosition] = useState(initialPosition);
+  const [size, setSize] = useState({
+    width: typeof defaultSize.width === 'number' ? defaultSize.width : 400,
+    height: typeof defaultSize.height === 'number' ? defaultSize.height : 300,
+  });
+  const [isMaximized, setIsMaximized] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
+  const [isResizing, setIsResizing] = useState(false);
+  
   const dragOffset = useRef({ x: 0, y: 0 });
+  const resizeStart = useRef({ x: 0, y: 0, w: 0, h: 0 });
   const windowRef = useRef<HTMLDivElement>(null);
 
   const handleMouseDown = (e: React.MouseEvent) => {
     if (onFocus) onFocus(id);
     
-    // Only drag from title bar
-    if ((e.target as HTMLElement).closest(`.${styles.titleBar}`)) {
+    // Maximize button
+    if ((e.target as HTMLElement).closest(`.${styles.maximizeBtn}`)) {
+      return;
+    }
+
+    // Only drag from title bar if not maximized
+    if (!isMaximized && (e.target as HTMLElement).closest(`.${styles.titleBar}`)) {
       setIsDragging(true);
       dragOffset.current = {
         x: e.clientX - position.x,
         y: e.clientY - position.y,
       };
     }
+  };
+
+  const startResizing = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (isMaximized) return;
+    
+    setIsResizing(true);
+    resizeStart.current = {
+      x: e.clientX,
+      y: e.clientY,
+      w: size.width,
+      h: size.height,
+    };
+  };
+
+  const toggleMaximize = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsMaximized(!isMaximized);
+    if (onMaximize) onMaximize(id);
   };
 
   useEffect(() => {
@@ -55,14 +87,22 @@ const Window: React.FC<WindowProps> = ({
           x: e.clientX - dragOffset.current.x,
           y: e.clientY - dragOffset.current.y,
         });
+      } else if (isResizing) {
+        const deltaX = e.clientX - resizeStart.current.x;
+        const deltaY = e.clientY - resizeStart.current.y;
+        setSize({
+          width: Math.max(200, resizeStart.current.w + deltaX),
+          height: Math.max(100, resizeStart.current.h + deltaY),
+        });
       }
     };
 
     const handleMouseUp = () => {
       setIsDragging(false);
+      setIsResizing(false);
     };
 
-    if (isDragging) {
+    if (isDragging || isResizing) {
       window.addEventListener('mousemove', handleMouseMove);
       window.addEventListener('mouseup', handleMouseUp);
     }
@@ -71,37 +111,51 @@ const Window: React.FC<WindowProps> = ({
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseup', handleMouseUp);
     };
-  }, [isDragging]);
+  }, [isDragging, isResizing]);
 
-  const windowStyle: React.CSSProperties = {
-    zIndex,
-    left: `${position.x}px`,
-    top: `${position.y}px`,
-    width: typeof defaultSize.width === 'number' ? `${defaultSize.width}px` : defaultSize.width,
-    height: typeof defaultSize.height === 'number' ? `${defaultSize.height}px` : defaultSize.height,
-  };
+  const windowStyle: React.CSSProperties = isMaximized 
+    ? {
+        zIndex,
+        left: 0,
+        top: 0,
+        width: '100%',
+        height: '100%',
+        position: 'absolute',
+      }
+    : {
+        zIndex,
+        left: `${position.x}px`,
+        top: `${position.y}px`,
+        width: `${size.width}px`,
+        height: `${size.height}px`,
+      };
 
   return (
     <div 
       ref={windowRef}
-      className={`${styles.window} ${isActive ? styles.active : ''}`}
+      className={`${styles.window} ${isActive ? styles.active : ''} ${isMaximized ? styles.maximized : ''}`}
       style={windowStyle}
       onMouseDown={handleMouseDown}
     >
-      <div className={styles.titleBar}>
+      <div className={styles.titleBar} onDoubleClick={toggleMaximize}>
         <div className={styles.titleContent}>
           {icon && <span className={styles.titleIcon}>{icon}</span>}
           <div className={styles.titleText}>{title}</div>
         </div>
         <div className={styles.controls}>
           <button className={styles.controlBtn} onClick={() => onMinimize?.(id)}>_</button>
-          <button className={styles.controlBtn} onClick={() => onMaximize?.(id)}>□</button>
+          <button className={`${styles.controlBtn} ${styles.maximizeBtn}`} onClick={toggleMaximize}>
+            {isMaximized ? '❐' : '□'}
+          </button>
           <button className={`${styles.controlBtn} ${styles.closeBtn}`} onClick={() => onClose?.(id)}>X</button>
         </div>
       </div>
       <div className={styles.content}>
         {children}
       </div>
+      {!isMaximized && (
+        <div className={styles.resizer} onMouseDown={startResizing}></div>
+      )}
     </div>
   );
 };

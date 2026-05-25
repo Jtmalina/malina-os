@@ -69,6 +69,36 @@
   margin-left: 2px;
 }
 
+.maximizeBtn {
+  font-size: 12px;
+}
+
+.maximized {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.resizer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 15px;
+  height: 15px;
+  cursor: nwse-resize;
+  background-image: linear-gradient(135deg, 
+    transparent 50%, 
+    var(--win-dark-gray) 50%, 
+    var(--win-dark-gray) 60%, 
+    transparent 60%, 
+    transparent 70%, 
+    var(--win-dark-gray) 70%, 
+    var(--win-dark-gray) 80%, 
+    transparent 80%, 
+    transparent 90%, 
+    var(--win-dark-gray) 90%);
+  background-size: 100% 100%;
+}
+
 .content {
   flex: 1;
   padding: 4px;

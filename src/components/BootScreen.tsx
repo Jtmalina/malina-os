@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './BootScreen.module.css';
+import SystemLogo from './SystemLogo';
 
 interface BootScreenProps {
   onBoot: () => void;
@@ -38,8 +39,8 @@ const BootScreen: React.FC<BootScreenProps> = ({ onBoot }) => {
           <br />
           Wait...<br />
           <br />
-          Detecting IDE Primary Master... [Found]<br />
-          Detecting IDE Primary Slave... [None]<br />
+          Detecting IDE Primary Drive... [Found]<br />
+          Detecting IDE Secondary Drive... [None]<br />
           <br />
           Press DEL to run Setup<br />
           <br />
@@ -53,7 +54,7 @@ const BootScreen: React.FC<BootScreenProps> = ({ onBoot }) => {
     return (
       <div className={styles.startingContainer} onClick={handleSkip}>
         <div className={styles.startingText}>
-          Starting Windows 95...<br />
+          Initializing Malina-OS...<br />
           <br />
           <span className={styles.skipHint}>(Click to skip)</span>
         </div>
@@ -64,17 +65,10 @@ const BootScreen: React.FC<BootScreenProps> = ({ onBoot }) => {
   return (
     <div className={styles.splashContainer} onClick={handleSkip}>
       <div className={styles.logoContainer}>
-        <div className={styles.winLogo}>
-          <div className={styles.flag}>
-            <div className={`${styles.square} ${styles.red}`}></div>
-            <div className={`${styles.square} ${styles.green}`}></div>
-            <div className={`${styles.square} ${styles.blue}`}></div>
-            <div className={`${styles.square} ${styles.yellow}`}></div>
-          </div>
-        </div>
+        <SystemLogo size="large" />
         <div className={styles.text}>
-          Microsoft<br />
-          <span>Windows 95</span>
+          Creative<br />
+          <span>Malina-OS</span>
         </div>
       </div>
       

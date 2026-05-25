@@ -1,0 +1,151 @@
+.container {
+  background-color: #000;
+  color: #fff;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Courier New', Courier, monospace;
+  overflow: hidden;
+  position: relative;
+}
+
+.loadingScreen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.logo {
+  font-size: 48px;
+  font-weight: bold;
+  letter-spacing: 10px;
+  color: #ff0000;
+  text-shadow: 0 0 10px #ff0000;
+}
+
+.progressBar {
+  width: 200px;
+  height: 10px;
+  border: 1px solid #fff;
+  padding: 2px;
+}
+
+.progressFill {
+  height: 100%;
+  background-color: #ff0000;
+  transition: width 0.1s linear;
+}
+
+.menu {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.menuItem {
+  font-size: 24px;
+  cursor: pointer;
+  padding: 5px 20px;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+}
+
+.menuItem:hover {
+  color: #ff0000;
+  border-color: #ff0000;
+  transform: scale(1.1);
+}
+
+.options {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.optionField {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.optionLabel {
+  font-size: 16px;
+  color: #aaa;
+}
+
+.optionInput {
+  width: 100%;
+  accent-color: #ff0000;
+}
+
+.backButton {
+  margin-top: auto;
+  align-self: flex-start;
+  font-size: 14px;
+  color: #888;
+  cursor: pointer;
+}
+
+.backButton:hover {
+  color: #fff;
+}
+
+.browserView {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--win-gray);
+  color: #000;
+}
+
+.browserHeader {
+  background-color: var(--win-gray);
+  padding: 4px;
+  border-bottom: 2px solid var(--win-dark-gray);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.browserToolbar {
+  display: flex;
+  gap: 5px;
+}
+
+.browserAddressBar {
+  background-color: #fff;
+  border: 1px solid #808080;
+  padding: 2px 5px;
+  font-size: 12px;
+  flex: 1;
+}
+
+.browserContent {
+  flex: 1;
+  background-color: #fff;
+  overflow: auto;
+}
+
+.browserIframePlaceholder {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  padding: 20px;
+  text-align: center;
+}
+
+.videoLink {
+  color: var(--win-blue);
+  text-decoration: underline;
+  cursor: pointer;
+}
