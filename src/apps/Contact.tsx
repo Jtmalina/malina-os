@@ -92,6 +92,12 @@ const Contact: React.FC = () => {
         <div className={styles.contentArea}>
           <form className={styles.messageHeader} onSubmit={handleSubmit}>
             <div className={styles.headerField}>
+              <label className={styles.headerLabel} htmlFor="to">To:</label>
+              <div className={styles.headerInputReadOnly}>
+                Julian Malina &lt;jmalina7897@gmail.com&gt;
+              </div>
+            </div>
+            <div className={styles.headerField}>
               <label className={styles.headerLabel} htmlFor="name">From:</label>
               <input 
                 type="text" 

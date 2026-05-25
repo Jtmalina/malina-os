@@ -146,6 +146,15 @@
   background-color: white;
 }
 
+.headerInputReadOnly {
+  flex: 1;
+  border: 1px solid #ccc;
+  padding: 2px 4px;
+  font-size: 12px;
+  background-color: #eee;
+  color: #666;
+}
+
 .messageBody {
   flex: 1;
   padding: 10px;
