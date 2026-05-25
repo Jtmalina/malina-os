@@ -43,7 +43,7 @@ const Window: React.FC<WindowProps> = ({
   const resizeStart = useRef({ x: 0, y: 0, w: 0, h: 0 });
   const windowRef = useRef<HTMLDivElement>(null);
 
-  const handleMouseDown = (e: React.MouseEvent) => {
+  const handleMouseDown = (e: React.MouseEvent | React.TouchEvent) => {
     if (onFocus) onFocus(id);
     
     // Maximize button
@@ -51,24 +51,30 @@ const Window: React.FC<WindowProps> = ({
       return;
     }
 
+    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+    const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
+
     // Only drag from title bar if not maximized
     if (!isMaximized && (e.target as HTMLElement).closest(`.${styles.titleBar}`)) {
       setIsDragging(true);
       dragOffset.current = {
-        x: e.clientX - position.x,
-        y: e.clientY - position.y,
+        x: clientX - position.x,
+        y: clientY - position.y,
       };
     }
   };
 
-  const startResizing = (e: React.MouseEvent) => {
+  const startResizing = (e: React.MouseEvent | React.TouchEvent) => {
     e.stopPropagation();
     if (isMaximized) return;
     
+    const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+    const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
+
     setIsResizing(true);
     resizeStart.current = {
-      x: e.clientX,
-      y: e.clientY,
+      x: clientX,
+      y: clientY,
       w: size.width,
       h: size.height,
     };
@@ -81,15 +87,18 @@ const Window: React.FC<WindowProps> = ({
   };
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
+    const handleMove = (e: MouseEvent | TouchEvent) => {
+      const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+      const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
+
       if (isDragging) {
         setPosition({
-          x: e.clientX - dragOffset.current.x,
-          y: e.clientY - dragOffset.current.y,
+          x: clientX - dragOffset.current.x,
+          y: clientY - dragOffset.current.y,
         });
       } else if (isResizing) {
-        const deltaX = e.clientX - resizeStart.current.x;
-        const deltaY = e.clientY - resizeStart.current.y;
+        const deltaX = clientX - resizeStart.current.x;
+        const deltaY = clientY - resizeStart.current.y;
         setSize({
           width: Math.max(200, resizeStart.current.w + deltaX),
           height: Math.max(100, resizeStart.current.h + deltaY),
@@ -97,19 +106,23 @@ const Window: React.FC<WindowProps> = ({
       }
     };
 
-    const handleMouseUp = () => {
+    const handleEnd = () => {
       setIsDragging(false);
       setIsResizing(false);
     };
 
     if (isDragging || isResizing) {
-      window.addEventListener('mousemove', handleMouseMove);
-      window.addEventListener('mouseup', handleMouseUp);
+      window.addEventListener('mousemove', handleMove);
+      window.addEventListener('mouseup', handleEnd);
+      window.addEventListener('touchmove', handleMove, { passive: false });
+      window.addEventListener('touchend', handleEnd);
     }
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseup', handleMouseUp);
+      window.removeEventListener('mousemove', handleMove);
+      window.removeEventListener('mouseup', handleEnd);
+      window.removeEventListener('touchmove', handleMove);
+      window.removeEventListener('touchend', handleEnd);
     };
   }, [isDragging, isResizing]);
 
@@ -136,6 +149,7 @@ const Window: React.FC<WindowProps> = ({
       className={`${styles.window} ${isActive ? styles.active : ''} ${isMaximized ? styles.maximized : ''}`}
       style={windowStyle}
       onMouseDown={handleMouseDown}
+      onTouchStart={handleMouseDown}
     >
       <div className={styles.titleBar} onDoubleClick={toggleMaximize}>
         <div className={styles.titleContent}>
@@ -154,7 +168,11 @@ const Window: React.FC<WindowProps> = ({
         {children}
       </div>
       {!isMaximized && (
-        <div className={styles.resizer} onMouseDown={startResizing}></div>
+        <div 
+          className={styles.resizer} 
+          onMouseDown={startResizing}
+          onTouchStart={startResizing}
+        ></div>
       )}
     </div>
   );

@@ -44,7 +44,7 @@ function App() {
       zIndex: 100,
       content: <AboutMe />,
       icon: '📝',
-      defaultSize: { width: 350, height: 400 },
+      defaultSize: { width: 500, height: 500 },
       initialPosition: { x: 100, y: 50 },
     },
     {

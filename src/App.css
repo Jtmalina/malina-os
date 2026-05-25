@@ -1,6 +1,7 @@
 .desktop {
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   background-color: var(--win-teal);
   position: relative;
   display: flex;
