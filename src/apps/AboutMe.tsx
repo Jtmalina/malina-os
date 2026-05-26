@@ -6,71 +6,44 @@ const profileText = `FILE: PROFILE.TXT
 NAME: Julian Malina
 ROLE: Software Engineer
 LOCATION: Altamont, NY
-CONTACT: jmalina7897@gmail.com | (518) 951-9005
 
 SUMMARY:
 --------
-Software Engineer with 6 years of professional experience, including 
-4.5 years building multiplayer systems, SDKs, and backend tools for 
-both AAA and smaller studios. Skilled in C++, C#, Go, and cloud 
-infrastructure (AWS/GCP), with a focus on matchmaking, anti-cheat, 
-and networking solutions at scale.
+Software Engineer with 6 years of experience specializing in 
+multiplayer systems, SDKs, and backend architecture. Expert in 
+C++, C#, Go, and cloud infrastructure (AWS/GCP), with a focus on 
+scale, matchmaking, and networking.
 
-This portfolio (Malina-OS) serves as an exploration into agentic 
-solutions for coding—an experiment in human-AI collaborative 
-engineering and high-fidelity UI reconstruction.
+This platform (Malina-OS) is an exploration into agentic 
+coding—an experiment in human-AI collaborative engineering 
+and high-fidelity UI reconstruction.
 
 TECHNICAL SKILLS:
 -----------------
 - Languages: C++, C#, Go, Java, Python
-- Engines/Frameworks: Unity, Unreal Engine, .NET, WPF, Qt
-- Networking/Cloud: AWS, GCP, SQL, REST APIs, Multiplayer Networking
-- Operating Systems: Windows, Linux
+- Tech: Unity, Unreal Engine, .NET, AWS, GCP, SQL
+- Expertise: Multiplayer Networking, SDK Design, Anti-Cheat
 
 EXPERIENCE:
 -----------
-Wolfjaw Studios | Software Engineer I & II | 2021 - Present
-- Designed and implemented matchmaking and server hosting SDKs for 
-  Unity and Unreal Engine, enabling integration across multiple 
-  games and internal tech demos.
-- Built cross-game anti-cheat systems and analytics tools that 
-  supported 300k+ concurrent players at peak load.
-- Developed and customized matchmaking algorithms to client 
-  specifications, including integration into Nerf VR.
-- Integrated third-party voice chat SDKs into multiplayer pipelines 
-  (including work on Bungie's Marathon).
-- Migrated legacy internal tools to modern C#/.NET and WPF 
-  applications connected to GCP, AWS, and SQL.
-- Facilitated design analysis sessions and ran internal playtests 
-  to validate gameplay systems and technical solutions.
+Wolfjaw Studios | Software Engineer II | 2021 - Present
+- Built matchmaking and server hosting SDKs for AAA studios.
+- Developed anti-cheat systems supporting 300k+ concurrent users.
+- Integrated multiplayer networking pipelines (e.g., Marathon).
+- Migrated legacy tools to modern C#/.NET & cloud backends.
 
 Northrop Grumman | Software Engineer | 2020 - 2021
-- Developed internal tools supporting field hardware used in 
-  real-time battlefield simulation systems for pilot training.
-- Established company-wide standards for GitHub LFS.
-- Modernized legacy mission-critical tools using C++, ADA, 
-  and Qt Creator/Designer.
+- Developed real-time battlefield simulation tools.
+- Modernized mission-critical systems using C++, ADA, and Qt.
 
-PROJECTS & EXPERIMENTS:
------------------------
-- Agentic Coding: This Malina-OS platform is a sandbox for 
-  autonomous engineering and human-AI partnership.
-- Anti-Cheat Tools: Scalable detection approaches leveraging 
-  cloud-hosted telemetry pipelines.
-- NerfVR Ultimate Championship: Full SDK integration and QA.
-
-PERSONAL INTERESTS:
--------------------
-- 🎵 Music & Festivals: Regular at music festivals and always 
-  hunting for new electronic and live sets.
-- 🐕 Animals: Big fan of dogs; usually found hanging out with a 
-  furry friend when not at the terminal.
-- ✈️ Travel: Passionate about exploring new cultures and terrains.
-- 🏋️ Fitness: Keeping the mind sharp by staying active and consistent.
+PROJECTS & INTERESTS:
+---------------------
+- Agentic Coding: Sandbox for autonomous engineering.
+- Personal: Music festivals, dogs, travel, and fitness.
 
 EDUCATION:
 ----------
-SUNY Buffalo | Combined BS/MS in Computer Science Engineering | 2020`;
+SUNY Buffalo | Combined BS/MS Computer Science Engineering | 2020`;
 
 const AboutMe: React.FC = () => {
   return (
