@@ -4,10 +4,11 @@ import styles from './Zombies.module.css';
 interface ZombiesProps {
   onLaunch?: (id: string) => void;
   onClose?: () => void;
+  skipLoading?: boolean;
 }
 
-const Zombies: React.FC<ZombiesProps> = ({ onLaunch, onClose }) => {
-  const [loading, setLoading] = useState(true);
+const Zombies: React.FC<ZombiesProps> = ({ onLaunch, onClose, skipLoading }) => {
+  const [loading, setLoading] = useState(!skipLoading);
   const [progress, setProgress] = useState(0);
   const [view, setView] = useState<'menu' | 'screenshots' | 'settings'>('menu');
 
@@ -17,12 +18,13 @@ const Zombies: React.FC<ZombiesProps> = ({ onLaunch, onClose }) => {
         setProgress(prev => {
           if (prev >= 100) {
             clearInterval(interval);
-            setTimeout(() => setLoading(false), 800);
+            setTimeout(() => setLoading(false), 100);
             return 100;
           }
-          return prev + Math.random() * 15;
+          const step = window.IS_VITEST ? 25 : Math.random() * 15;
+          return prev + step;
         });
-      }, 120);
+      }, 10);
       return () => clearInterval(interval);
     }
   }, [loading]);
@@ -83,10 +85,10 @@ const Zombies: React.FC<ZombiesProps> = ({ onLaunch, onClose }) => {
           </div>
           <div className={styles.optionField}>
             <label className={styles.optionLabel}>ZOMBIE SPEED</label>
-            <select style={{ background: '#111', color: '#fff', border: '1px solid #333', padding: '5px' }}>
+            <select defaultValue="SPRINT" style={{ background: '#111', color: '#fff', border: '1px solid #333', padding: '5px' }}>
               <option>WALK</option>
               <option>RUN</option>
-              <option selected>SPRINT</option>
+              <option>SPRINT</option>
               <option>NIGHTMARE</option>
             </select>
           </div>

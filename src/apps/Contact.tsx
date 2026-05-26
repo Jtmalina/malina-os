@@ -79,7 +79,7 @@ const Contact: React.FC = () => {
         <div className={styles.sidebar}>
           <div className={styles.sidebarHeader}>Folders</div>
           <div className={styles.folderList}>
-            <div className={styles.folderItem}>📁 Outlook Express</div>
+            <div className={styles.folderItem} data-testid="sidebar-outlook">📁 Outlook Express</div>
             <div className={styles.folderItem}>&nbsp;&nbsp;📥 Inbox</div>
             <div className={styles.folderItem}>&nbsp;&nbsp;📤 Outbox</div>
             <div className={styles.folderItem}>&nbsp;&nbsp;📧 Sent Items</div>

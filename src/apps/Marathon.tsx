@@ -4,10 +4,11 @@ import styles from './Marathon.module.css';
 interface MarathonProps {
   onLaunch?: (id: string) => void;
   onClose?: () => void;
+  skipLoading?: boolean;
 }
 
-const Marathon: React.FC<MarathonProps> = ({ onLaunch, onClose }) => {
-  const [loading, setLoading] = useState(true);
+const Marathon: React.FC<MarathonProps> = ({ onLaunch, onClose, skipLoading }) => {
+  const [loading, setLoading] = useState(!skipLoading);
   const [progress, setProgress] = useState(0);
   const [view, setView] = useState<'menu' | 'options' | 'credits'>('menu');
 
@@ -17,12 +18,13 @@ const Marathon: React.FC<MarathonProps> = ({ onLaunch, onClose }) => {
         setProgress(prev => {
           if (prev >= 100) {
             clearInterval(interval);
-            setTimeout(() => setLoading(false), 500);
+            setTimeout(() => setLoading(false), 100);
             return 100;
           }
-          return prev + Math.random() * 10;
+          const step = window.IS_VITEST ? 25 : Math.random() * 10;
+          return prev + step;
         });
-      }, 100);
+      }, 10);
       return () => clearInterval(interval);
     }
   }, [loading]);
@@ -56,9 +58,9 @@ const Marathon: React.FC<MarathonProps> = ({ onLaunch, onClose }) => {
           </div>
           <div className={styles.optionField}>
             <label className={styles.optionLabel}>AUDIO FIDELITY</label>
-            <select style={{ background: '#000', color: '#fff', border: '1px solid #fff' }}>
+            <select defaultValue="32-BIT SURROUND" style={{ background: '#000', color: '#fff', border: '1px solid #fff' }}>
               <option>8-BIT MONO</option>
-              <option selected>32-BIT SURROUND</option>
+              <option>32-BIT SURROUND</option>
               <option>VACUUM SILENCE</option>
             </select>
           </div>

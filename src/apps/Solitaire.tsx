@@ -149,14 +149,14 @@ const Solitaire: React.FC = () => {
         <div className={styles.menuItem}>Help</div>
       </div>
       
-      <div className={styles.board}>
+      <div className={styles.board} data-testid="solitaire-board">
         <div className={styles.topSection}>
           <div className={styles.stockSection}>
-            <div className={styles.pile} onClick={drawCard}>
-              {stock.length > 0 && <div className={`${styles.card} ${styles.cardBack}`}></div>}
+            <div className={styles.pile} onClick={drawCard} data-testid="stock-pile">
+              {stock.length > 0 && <div className={`${styles.card} ${styles.cardBack}`} data-testid="card-back"></div>}
               {stock.length === 0 && <div className={styles.emptyPile}>🔄</div>}
             </div>
-            <div className={styles.pile}>
+            <div className={styles.pile} data-testid="waste-pile">
               {waste.length > 0 && (
                 <div 
                   className={`${styles.card} ${isRed(waste[waste.length-1].suit) ? styles.red : ''}`}

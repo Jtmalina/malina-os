@@ -3,10 +3,11 @@ import styles from './NerfVR.module.css';
 
 interface NerfVRProps {
   onClose?: () => void;
+  skipLoading?: boolean;
 }
 
-const NerfVR: React.FC<NerfVRProps> = ({ onClose }) => {
-  const [loading, setLoading] = useState(true);
+const NerfVR: React.FC<NerfVRProps> = ({ onClose, skipLoading }) => {
+  const [loading, setLoading] = useState(!skipLoading);
   const [progress, setProgress] = useState(0);
   const [view, setView] = useState<'menu' | 'about'>('menu');
 
@@ -16,12 +17,13 @@ const NerfVR: React.FC<NerfVRProps> = ({ onClose }) => {
         setProgress(prev => {
           if (prev >= 100) {
             clearInterval(interval);
-            setTimeout(() => setLoading(false), 500);
+            setTimeout(() => setLoading(false), 100);
             return 100;
           }
-          return prev + Math.random() * 20;
+          const step = window.IS_VITEST ? 25 : Math.random() * 20;
+          return prev + step;
         });
-      }, 100);
+      }, 10);
       return () => clearInterval(interval);
     }
   }, [loading]);

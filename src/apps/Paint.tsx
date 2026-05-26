@@ -10,6 +10,7 @@ const Paint: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [color, setColor] = useState('#000000');
+  const [brushSize, setBrushSize] = useState(2);
   const lastPos = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -83,22 +84,44 @@ const Paint: React.FC = () => {
 
   return (
     <div className={styles.paintContainer}>
-      <div className={styles.toolbar}>
-        <div className={styles.tools}>
-          <div className={`${styles.toolIcon} inset`}>🖌️</div>
-          <div className={styles.toolIcon} onClick={clearCanvas}>🗑️</div>
-        </div>
+      <div className={styles.menuBar}>
+        <span className={styles.menuItem}>File</span>
+        <span className={styles.menuItem}>Edit</span>
+        <span className={styles.menuItem}>View</span>
+        <span className={styles.menuItem}>Image</span>
+        <span className={styles.menuItem}>Options</span>
+        <span className={styles.menuItem}>Help</span>
       </div>
-      
-      <div className={styles.canvasArea}>
-        <canvas
-          ref={canvasRef}
-          onMouseDown={startDrawing}
-          onMouseMove={draw}
-          onMouseUp={stopDrawing}
-          onMouseLeave={stopDrawing}
-          className={styles.canvas}
-        />
+
+      <div className={styles.mainLayout}>
+        <div className={styles.toolbar}>
+          <div className={styles.tools}>
+            <div className={`${styles.toolIcon} inset`}>🖌️</div>
+            <div className={styles.toolIcon} onClick={clearCanvas}>🗑️</div>
+            <div className={styles.toolSeparator}></div>
+            <div className={styles.sizeSlider}>
+              <input 
+                type="range" 
+                min="1" 
+                max="20" 
+                value={brushSize} 
+                onChange={(e) => setBrushSize(parseInt(e.target.value))}
+                title="Brush Size"
+              />
+            </div>
+          </div>
+        </div>
+        
+        <div className={styles.canvasArea}>
+          <canvas
+            ref={canvasRef}
+            onMouseDown={startDrawing}
+            onMouseMove={draw}
+            onMouseUp={stopDrawing}
+            onMouseLeave={stopDrawing}
+            className={styles.canvas}
+          />
+        </div>
       </div>
 
       <div className={styles.colorPalette}>

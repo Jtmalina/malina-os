@@ -1,10 +1,29 @@
 .paintContainer {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   height: 100%;
   background-color: var(--win-gray);
-  position: relative;
-  flex-wrap: wrap;
+  color: var(--win-black);
+  user-select: none;
+}
+
+.menuBar {
+  display: flex;
+  padding: 2px 4px;
+  gap: 12px;
+  font-size: 11px;
+  border-bottom: 1px solid var(--win-dark-gray);
+}
+
+.menuItem {
+  cursor: default;
+}
+
+.mainLayout {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  min-height: 0;
 }
 
 .toolbar {
@@ -33,10 +52,33 @@
   border: 1px solid;
   border-color: var(--win-white) var(--win-dark-gray) var(--win-dark-gray) var(--win-white);
   cursor: pointer;
+  font-size: 12px;
 }
 
-.toolIcon:active {
+.toolIcon:active, .toolIcon.inset {
   border-color: var(--win-dark-gray) var(--win-white) var(--win-white) var(--win-dark-gray);
+  background-color: #eee;
+}
+
+.toolSeparator {
+  height: 1px;
+  width: 100%;
+  background-color: var(--win-dark-gray);
+  margin: 4px 0;
+}
+
+.sizeSlider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2px;
+}
+
+.sizeSlider input {
+  width: 24px;
+  writing-mode: vertical-lr;
+  direction: rtl;
+  height: 60px;
 }
 
 .canvasArea {
