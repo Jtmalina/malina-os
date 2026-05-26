@@ -1,50 +1,66 @@
-# React + TypeScript + Vite
+# Malina-OS: Windows 95 Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Malina-OS is a nostalgic, interactive desktop environment built with React 18, TypeScript, and Vite. It serves as a comprehensive portfolio that meticulously recreates the Windows 95 experience while showcasing my professional background and technical experiments.
 
-Currently, two official plugins are available:
+## Project Overview
+This project is an exploration into **agentic solutions for coding**—a collaborative partnership between a human engineer and AI (Gemini 2.0 Flash) to achieve high-fidelity UI reconstruction and autonomous codebase management.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Key Features
+- **Authentic Aesthetic:** Pixel-perfect recreation of beveled borders, classic typography, and the iconic #008080 teal desktop.
+- **Interactive Windowing:** Fully functional dragging, resizing, focusing, and taskbar persistence.
+- **System Sounds:** Nostalgic Windows 95 audio cues for system events and actions.
 
-## Expanding the ESLint configuration
+## The Desktop Experience
+I invite you to explore the various applications installed on Malina-OS:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **📂 Projects:** A file explorer showcasing my work history. Dive into the `Games` folder for interactive project deep-dives.
+- **📝 About Me:** A Notepad-style profile detailing my 6 years of experience in multiplayer systems and SDK development.
+- **✉️ Contact:** A dedicated email composition tool for reaching out.
+- **🎨 MalinaPaint:** A functional drawing application for creative expression.
+- **🃏 Games:** Play classic recreations of **Minesweeper** and **Solitaire**.
+- **🔫 Project Showcases:** Specialized interactive apps for projects like **Marathon**, **City Streets (Zombies)**, and **Nerf VR**.
 
-- Configure the top-level `parserOptions` property like this:
+## Tech Stack
+- **Framework:** React 18
+- **Language:** TypeScript
+- **Styling:** CSS Modules (Vanilla CSS)
+- **Build Tool:** Vite
+- **Testing:** Vitest + React Testing Library
+- **Deployment:** Vercel (CI/CD)
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+---
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Installation & Setup
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+To run Malina-OS locally, follow these steps:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+### Prerequisites
+- Node.js (v18 or higher)
+- npm
+
+### Steps
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Jtmalina/malina-os.git
+   cd malina-os
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+4. **Build for production:**
+   ```bash
+   npm run build
+   ```
+
+5. **Run tests:**
+   ```bash
+   npm test
+   ```
