@@ -41,10 +41,8 @@ describe('Contact App', () => {
     
     // Mock window.location.href
     const originalLocation = window.location;
-    // @ts-expect-error - mocking location
-    delete window.location;
-    // @ts-expect-error - mocking location
-    window.location = { ...originalLocation, href: '' };
+    delete (window as any).location;
+    window.location = { ...originalLocation, href: '' } as any;
 
     fireEvent.click(sendBtn);
     expect(screen.getByText('Sending message...')).toBeInTheDocument();

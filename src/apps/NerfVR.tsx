@@ -75,7 +75,7 @@ const NerfVR: React.FC<NerfVRProps> = ({ onClose, skipLoading }) => {
         <div className={styles.menuItem} onClick={() => setView('about')}>
           ABOUT PROJECT
         </div>
-        <div className={styles.menuItem} onClick={onClose} style={{ backgroundColor: '#444', boxUnderline: 'none' }}>
+        <div className={styles.menuItem} onClick={onClose} style={{ backgroundColor: '#444' }}>
           QUIT
         </div>
       </div>
