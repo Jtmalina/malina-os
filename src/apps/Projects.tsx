@@ -66,13 +66,6 @@ const Projects: React.FC<ProjectsProps> = ({ onLaunch }) => {
         url: 'https://github.com/Jtmalina/Wolfjam-StreetBrawler' 
       },
       { 
-        name: 'Solitaire', 
-        type: 'Executable', 
-        size: '180 KB', 
-        icon: '🃏', 
-        launchApp: 'solitaire'
-      },
-      { 
         name: 'Nerf VR', 
         type: 'Executable', 
         size: '2.4 GB', 
