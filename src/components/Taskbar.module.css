@@ -1,10 +1,10 @@
 .taskbar {
-  height: 28px;
+  height: 32px;
   background-color: var(--win-gray);
   border-top: 2px solid var(--win-white);
   display: flex;
   align-items: center;
-  padding: 2px;
+  padding: 2px 4px;
   gap: 4px;
   z-index: 9999;
 }

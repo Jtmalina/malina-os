@@ -7,6 +7,8 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  /* Account for mobile browser bars and notches */
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 8px);
 }
 
 .icons-container {
@@ -25,7 +27,8 @@
   top: 0;
   left: 0;
   width: 100%;
-  bottom: 30px; /* Pin to top of taskbar instead of calc height */
+  /* 32px is taskbar height + 2px border + 8px buffer */
+  bottom: calc(42px + env(safe-area-inset-bottom, 0px)); 
   pointer-events: none;
   z-index: 2;
 }
