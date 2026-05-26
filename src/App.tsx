@@ -168,7 +168,7 @@ function App() {
       isOpen: false,
       isMinimized: false,
       zIndex: 111,
-      content: <NerfVR onClose={() => closeWindow('nerf-vr')} />,
+      content: <NerfVR onLaunch={(id) => focusWindow(id)} onClose={() => closeWindow('nerf-vr')} />,
       icon: '🎯',
       defaultSize: { width: 600, height: 450 },
       initialPosition: { x: 100, y: 100 },

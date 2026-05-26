@@ -37,7 +37,15 @@ describe('NerfVR App', () => {
     const onClose = vi.fn();
     render(<NerfVR onClose={onClose} skipLoading={true} />);
 
-    fireEvent.click(screen.getByText('QUIT'));
+    fireEvent.click(await screen.findByText('QUIT'));
     expect(onClose).toHaveBeenCalled();
-  });
-});
+    });
+
+    it('calls onLaunch for media player when Play Trailer is clicked', () => {
+    const onLaunch = vi.fn();
+    render(<NerfVR onLaunch={onLaunch} skipLoading={true} />);
+
+    fireEvent.click(screen.getByText('PLAY TRAILER'));
+    expect(onLaunch).toHaveBeenCalledWith('media-player');
+    });
+    });

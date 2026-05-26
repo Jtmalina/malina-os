@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import styles from './NerfVR.module.css';
 
 interface NerfVRProps {
+  onLaunch?: (id: string) => void;
   onClose?: () => void;
   skipLoading?: boolean;
 }
 
-const NerfVR: React.FC<NerfVRProps> = ({ onClose, skipLoading }) => {
+const NerfVR: React.FC<NerfVRProps> = ({ onLaunch, onClose, skipLoading }) => {
   const [loading, setLoading] = useState(!skipLoading);
   const [progress, setProgress] = useState(0);
   const [view, setView] = useState<'menu' | 'about'>('menu');
@@ -68,7 +69,7 @@ const NerfVR: React.FC<NerfVRProps> = ({ onClose, skipLoading }) => {
         <div className={styles.nerfLogo} style={{ marginBottom: '20px' }}>NERF VR</div>
         <div 
           className={styles.menuItem} 
-          onClick={() => window.open('https://www.youtube.com/watch?v=AaZvrwNg63o&t=19s', '_blank')}
+          onClick={() => onLaunch?.('media-player')}
         >
           PLAY TRAILER
         </div>
