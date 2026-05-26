@@ -43,10 +43,14 @@ PROJECTS & EXPERIMENTS:
 
 PERSONAL INTERESTS:
 -------------------
-- 🎵 Music & Festivals: Frequent attendee and fan of live sets.
-- 🐕 Animals: Big fan of dogs and spending time outdoors.
-- ✈️ Travel: Passionate about exploring new cultures.
-- 🏋️ Fitness: Consistent workouts to keep the mind sharp.
+- 🎵 Music & Festivals: There's nothing like the energy of a live 
+  set. Regular at music festivals and always hunting for new sounds.
+- 🐕 Animals: Big fan of dogs and all things furry. Usually found 
+  hanging out with a four-legged friend when not at the terminal.
+- ✈️ Travel: Passionate about exploring new cultures and terrains. 
+  Every trip is a new perspective.
+- 🏋️ Fitness: Keeping the mind sharp by keeping the body active. 
+  Consistent workouts and staying active.
 
 EDUCATION:
 ----------
