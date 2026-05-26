@@ -1,0 +1,153 @@
+.container {
+  background-color: #050505;
+  color: #d1d1d1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+
+.loadingScreen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  background: radial-gradient(circle, #1a1a1a 0%, #000 100%);
+}
+
+.zombiesLogo {
+  font-size: 42px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #8b0000;
+  text-shadow: 2px 2px 4px #000, 0 0 15px #ff0000;
+  text-align: center;
+  line-height: 1;
+}
+
+.subLogo {
+  font-size: 18px;
+  color: #666;
+  margin-top: 5px;
+}
+
+.progressBar {
+  width: 250px;
+  height: 4px;
+  background-color: #222;
+  border: 1px solid #333;
+}
+
+.progressFill {
+  height: 100%;
+  background-color: #8b0000;
+  box-shadow: 0 0 10px #ff0000;
+}
+
+.menu {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  gap: 10px;
+  background: linear-gradient(90deg, rgba(0,0,0,0.8) 0%, transparent 100%);
+}
+
+.menuItem {
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #888;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.menuItem:hover {
+  color: #fff;
+  text-shadow: 0 0 8px #ff0000;
+  transform: translateX(10px);
+}
+
+.activeItem {
+  color: #fff;
+  border-left: 4px solid #8b0000;
+  padding-left: 15px;
+}
+
+.gallery {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+}
+
+.screenshotWrapper {
+  width: 100%;
+  border: 2px solid #333;
+  background-color: #111;
+  padding: 5px;
+}
+
+.screenshot {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.screenshotLabel {
+  font-size: 12px;
+  color: #666;
+  margin-top: 5px;
+  text-align: right;
+}
+
+.options {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.optionField {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.optionLabel {
+  font-size: 14px;
+  color: #8b0000;
+  font-weight: bold;
+}
+
+.optionInput {
+  width: 100%;
+  accent-color: #8b0000;
+}
+
+.backButton {
+  margin-top: 20px;
+  cursor: pointer;
+  color: #555;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.backButton:hover {
+  color: #fff;
+}
+
+.footer {
+  position: absolute;
+  bottom: 15px;
+  right: 20px;
+  font-size: 10px;
+  color: #333;
+}

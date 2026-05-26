@@ -42,11 +42,18 @@ const Projects: React.FC<ProjectsProps> = ({ onLaunch }) => {
         icon: '📝', 
         url: 'https://omni-list-one.vercel.app/' 
       },
-    ],
     Games: [
+      { 
+        name: 'City Streets', 
+        type: 'Executable', 
+        size: '1.2 GB', 
+        icon: '🧟', 
+        launchApp: 'zombies'
+      },
       { 
         name: 'Marathon', 
         type: 'Executable', 
+    ...
         size: '120 MB', 
         icon: '🔫', 
         launchApp: 'marathon'

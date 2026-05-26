@@ -12,6 +12,7 @@ import Minesweeper from './apps/Minesweeper'
 import Marathon from './apps/Marathon'
 import Browser from './apps/Browser'
 import ProjectProperties from './apps/ProjectProperties'
+import Zombies from './apps/Zombies'
 import BootScreen from './components/BootScreen'
 import Dialog from './components/Dialog'
 import { playSound } from './utils/sounds'
@@ -136,6 +137,17 @@ function App() {
       defaultSize: { width: 400, height: 450 },
       initialPosition: { x: 300, y: 100 },
       hideFromMenu: true,
+    },
+    {
+      id: 'zombies',
+      title: 'Call of Duty: Zombies',
+      isOpen: false,
+      isMinimized: false,
+      zIndex: 109,
+      content: <Zombies onLaunch={(id) => focusWindow(id)} onClose={() => closeWindow('zombies')} />,
+      icon: '🧟',
+      defaultSize: { width: 650, height: 450 },
+      initialPosition: { x: 80, y: 80 },
     },
   ]);
 

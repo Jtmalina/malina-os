@@ -26,7 +26,7 @@ const ProjectProperties: React.FC = () => {
           </div>
           <div className={styles.detailRow}>
             <span className={styles.label}>Description:</span>
-            <span className={styles.value}>A nostalgic, fully interactive Windows 95-style portfolio showcasing web engineering and design fidelity.</span>
+            <span className={styles.value}>An exploration into agentic solutions for coding, presented as a nostalgic Windows 95-style desktop environment.</span>
           </div>
           <div className={styles.detailRow}>
             <span className={styles.label}>Tech Stack:</span>
@@ -50,7 +50,7 @@ const ProjectProperties: React.FC = () => {
         <div className={styles.actions}>
           <button 
             className="outset" 
-            onClick={() => window.open('https://github.com/Jtmalina/julian-malina-dev', '_blank')}
+            onClick={() => window.open('https://github.com/Jtmalina/malina-os', '_blank')}
           >
             View Source
           </button>
