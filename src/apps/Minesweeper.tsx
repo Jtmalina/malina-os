@@ -15,19 +15,32 @@ interface Difficulty {
   mines: number;
 }
 
+interface MinesweeperProps {
+  onRequestResize?: (width: number, height: number) => void;
+}
+
 const DIFFICULTIES: Difficulty[] = [
   { name: 'Beginner', rows: 9, cols: 9, mines: 10 },
   { name: 'Intermediate', rows: 16, cols: 16, mines: 40 },
   { name: 'Expert', rows: 16, cols: 30, mines: 99 },
 ];
 
-const Minesweeper: React.FC = () => {
+const Minesweeper: React.FC<MinesweeperProps> = ({ onRequestResize }) => {
   const [difficulty, setDifficulty] = useState<Difficulty>(DIFFICULTIES[0]);
   const [grid, setGrid] = useState<Cell[][]>([]);
   const [gameState, setGameState] = useState<'ready' | 'playing' | 'won' | 'lost'>('ready');
   const [minesLeft, setMinesLeft] = useState(difficulty.mines);
   const [timer, setTimer] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Resize window when difficulty changes
+  useEffect(() => {
+    if (onRequestResize) {
+      const width = Math.max(220, difficulty.cols * 20 + 40);
+      const height = difficulty.rows * 20 + 110;
+      onRequestResize(width, height);
+    }
+  }, [difficulty, onRequestResize]);
 
   const initGrid = useCallback(() => {
     const { rows, cols, mines } = difficulty;

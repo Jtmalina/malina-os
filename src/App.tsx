@@ -101,7 +101,7 @@ function App() {
       isOpen: false,
       isMinimized: false,
       zIndex: 105,
-      content: <Minesweeper />,
+      content: <Minesweeper onRequestResize={(w, h) => requestResize('minesweeper', w, h)} />,
       icon: '💣',
       defaultSize: { width: 280, height: 380 },
       initialPosition: { x: 300, y: 50 },
@@ -214,6 +214,10 @@ function App() {
     playSound('ding');
     setWindows(prev => prev.map(w => w.id === id ? { ...w, isOpen: false } : w));
     if (activeWindowId === id) setActiveWindowId(null);
+  };
+
+  const requestResize = (id: string, width: number, height: number) => {
+    setWindows(prev => prev.map(w => w.id === id ? { ...w, defaultSize: { width, height } } : w));
   };
 
   const minimizeWindow = (id: string) => {

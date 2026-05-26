@@ -35,6 +35,15 @@ const Window: React.FC<WindowProps> = ({
     width: typeof defaultSize.width === 'number' ? defaultSize.width : 400,
     height: typeof defaultSize.height === 'number' ? defaultSize.height : 300,
   });
+
+  // Update size when defaultSize changes externally
+  useEffect(() => {
+    setSize({
+      width: typeof defaultSize.width === 'number' ? defaultSize.width : 400,
+      height: typeof defaultSize.height === 'number' ? defaultSize.height : 300,
+    });
+  }, [defaultSize.width, defaultSize.height]);
+
   const [isMaximized, setIsMaximized] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [isResizing, setIsResizing] = useState(false);
