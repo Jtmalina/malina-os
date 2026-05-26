@@ -13,6 +13,7 @@ import Marathon from './apps/Marathon'
 import Browser from './apps/Browser'
 import ProjectProperties from './apps/ProjectProperties'
 import Zombies from './apps/Zombies'
+import Solitaire from './apps/Solitaire'
 import BootScreen from './components/BootScreen'
 import Dialog from './components/Dialog'
 import { playSound } from './utils/sounds'
@@ -148,6 +149,17 @@ function App() {
       icon: '🧟',
       defaultSize: { width: 650, height: 450 },
       initialPosition: { x: 80, y: 80 },
+    },
+    {
+      id: 'solitaire',
+      title: 'Solitaire',
+      isOpen: false,
+      isMinimized: false,
+      zIndex: 110,
+      content: <Solitaire />,
+      icon: '🃏',
+      defaultSize: { width: 600, height: 450 },
+      initialPosition: { x: 150, y: 150 },
     },
   ]);
 

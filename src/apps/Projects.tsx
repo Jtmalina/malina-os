@@ -65,6 +65,13 @@ const Projects: React.FC<ProjectsProps> = ({ onLaunch }) => {
         icon: '🥊', 
         url: 'https://github.com/Jtmalina/Wolfjam-StreetBrawler' 
       },
+      { 
+        name: 'Solitaire', 
+        type: 'Executable', 
+        size: '180 KB', 
+        icon: '🃏', 
+        launchApp: 'solitaire'
+      },
     ],
   };
 
