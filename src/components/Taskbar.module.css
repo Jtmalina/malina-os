@@ -1,5 +1,5 @@
 .taskbar {
-  height: 32px;
+  height: 28px;
   background-color: var(--win-gray);
   border-top: 2px solid var(--win-white);
   display: flex;
