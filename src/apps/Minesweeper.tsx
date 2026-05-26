@@ -36,8 +36,9 @@ const Minesweeper: React.FC<MinesweeperProps> = ({ onRequestResize }) => {
   // Resize window when difficulty changes
   useEffect(() => {
     if (onRequestResize) {
-      const width = Math.max(220, difficulty.cols * 20 + 40);
-      const height = difficulty.rows * 20 + 110;
+      // Adjusted constants to match the "perfect" Beginner size and scale up
+      const width = Math.max(280, difficulty.cols * 25 + 50);
+      const height = difficulty.rows * 25 + 155;
       onRequestResize(width, height);
     }
   }, [difficulty, onRequestResize]);
