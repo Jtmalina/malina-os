@@ -33,7 +33,7 @@ describe('NerfVR App', () => {
     expect(screen.getByText('PLAY TRAILER')).toBeInTheDocument();
   });
 
-  it('calls onClose when Quit is clicked', () => {
+  it('calls onClose when Quit is clicked', async () => {
     const onClose = vi.fn();
     render(<NerfVR onClose={onClose} skipLoading={true} />);
 
