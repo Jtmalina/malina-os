@@ -44,7 +44,7 @@ function App() {
       zIndex: 100,
       content: <AboutMe />,
       icon: '📝',
-      defaultSize: { width: 500, height: 500 },
+      defaultSize: { width: 600, height: 550 },
       initialPosition: { x: 100, y: 50 },
     },
     {
@@ -71,13 +71,13 @@ function App() {
     },
     {
       id: 'paint',
-      title: 'untitled - Paint',
+      title: 'MalinaPaint',
       isOpen: false,
       isMinimized: false,
       zIndex: 103,
       content: <Paint />,
       icon: '🎨',
-      defaultSize: { width: 600, height: 450 },
+      defaultSize: { width: 700, height: 550 },
       initialPosition: { x: 80, y: 120 },
     },
     {
@@ -100,7 +100,7 @@ function App() {
       zIndex: 105,
       content: <Minesweeper />,
       icon: '💣',
-      defaultSize: { width: 220, height: 310 },
+      defaultSize: { width: 280, height: 380 },
       initialPosition: { x: 300, y: 50 },
     },
     {
