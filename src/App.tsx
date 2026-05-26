@@ -14,6 +14,7 @@ import Browser from './apps/Browser'
 import ProjectProperties from './apps/ProjectProperties'
 import Zombies from './apps/Zombies'
 import Solitaire from './apps/Solitaire'
+import NerfVR from './apps/NerfVR'
 import BootScreen from './components/BootScreen'
 import Dialog from './components/Dialog'
 import { playSound } from './utils/sounds'
@@ -160,6 +161,17 @@ function App() {
       icon: '🃏',
       defaultSize: { width: 600, height: 450 },
       initialPosition: { x: 150, y: 150 },
+    },
+    {
+      id: 'nerf-vr',
+      title: 'Nerf VR: Ultimate Championship',
+      isOpen: false,
+      isMinimized: false,
+      zIndex: 111,
+      content: <NerfVR onClose={() => closeWindow('nerf-vr')} />,
+      icon: '🎯',
+      defaultSize: { width: 600, height: 450 },
+      initialPosition: { x: 100, y: 100 },
     },
   ]);
 

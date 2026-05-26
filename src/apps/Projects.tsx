@@ -72,6 +72,13 @@ const Projects: React.FC<ProjectsProps> = ({ onLaunch }) => {
         icon: '🃏', 
         launchApp: 'solitaire'
       },
+      { 
+        name: 'Nerf VR', 
+        type: 'Executable', 
+        size: '2.4 GB', 
+        icon: '🎯', 
+        launchApp: 'nerf-vr'
+      },
     ],
   };
 
