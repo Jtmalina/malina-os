@@ -36,10 +36,17 @@ Northrop Grumman | Software Engineer | 2020 - 2021
 - Developed real-time battlefield simulation tools.
 - Modernized mission-critical systems using C++, ADA, and Qt.
 
-PROJECTS & INTERESTS:
----------------------
+PROJECTS & EXPERIMENTS:
+-----------------------
 - Agentic Coding: Sandbox for autonomous engineering.
-- Personal: Music festivals, dogs, travel, and fitness.
+- Anti-Cheat Tools: Scalable cloud telemetry pipelines.
+
+PERSONAL INTERESTS:
+-------------------
+- 🎵 Music & Festivals: Frequent attendee and fan of live sets.
+- 🐕 Animals: Big fan of dogs and spending time outdoors.
+- ✈️ Travel: Passionate about exploring new cultures.
+- 🏋️ Fitness: Consistent workouts to keep the mind sharp.
 
 EDUCATION:
 ----------
