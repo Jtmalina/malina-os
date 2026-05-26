@@ -4,49 +4,73 @@ const profileText = `FILE: PROFILE.TXT
 ==================
 
 NAME: Julian Malina
-ROLE: Software Engineer / Creative Developer
-DATE: May 23, 2026
+ROLE: Software Engineer
+LOCATION: Altamont, NY
+CONTACT: jmalina7897@gmail.com | (518) 951-9005
 
 SUMMARY:
 --------
-Passionate Software Engineer with a focus on building interactive, 
-high-performance web applications. Expert in React, TypeScript, 
-and modern frontend architecture, with a secondary love for 
-retro UI and nostalgic user experiences.
+Software Engineer with 6 years of professional experience, including 
+4.5 years building multiplayer systems, SDKs, and backend tools for 
+both AAA and smaller studios. Skilled in C++, C#, Go, and cloud 
+infrastructure (AWS/GCP), with a focus on matchmaking, anti-cheat, 
+and networking solutions at scale.
+
+This portfolio (Malina-OS) serves as an exploration into agentic 
+solutions for coding—an experiment in human-AI collaborative 
+engineering and high-fidelity UI reconstruction.
 
 TECHNICAL SKILLS:
 -----------------
-- Frontend: React, TypeScript, Vite, CSS Modules, HTML5 Canvas
-- Testing: Vitest, React Testing Library, Happy DOM
-- Workflow: Git, GitHub CLI, Vercel, CI/CD
-- Creative: Game Dev (Godot), Retro UI Design
+- Languages: C++, C#, Go, Java, Python
+- Engines/Frameworks: Unity, Unreal Engine, .NET, WPF, Qt
+- Networking/Cloud: AWS, GCP, SQL, REST APIs, Multiplayer Networking
+- Operating Systems: Windows, Linux
 
 EXPERIENCE:
 -----------
-[Full professional history loaded from JulianMalinaResume2026.pdf]
-- Built custom desktop environments for portfolio projects.
-- Implemented complex state management for windowing systems.
-- Developed interactive web-based games and productivity tools.
+Wolfjaw Studios | Software Engineer I & II | 2021 - Present
+- Designed and implemented matchmaking and server hosting SDKs for 
+  Unity and Unreal Engine, enabling integration across multiple 
+  games and internal tech demos.
+- Built cross-game anti-cheat systems and analytics tools that 
+  supported 300k+ concurrent players at peak load.
+- Developed and customized matchmaking algorithms to client 
+  specifications, including integration into Nerf VR.
+- Integrated third-party voice chat SDKs into multiplayer pipelines 
+  (including work on Bungie's Marathon).
+- Migrated legacy internal tools to modern C#/.NET and WPF 
+  applications connected to GCP, AWS, and SQL.
+- Facilitated design analysis sessions and ran internal playtests 
+  to validate gameplay systems and technical solutions.
+
+Northrop Grumman | Software Engineer | 2020 - 2021
+- Developed internal tools supporting field hardware used in 
+  real-time battlefield simulation systems for pilot training.
+- Established company-wide standards for GitHub LFS.
+- Modernized legacy mission-critical tools using C++, ADA, 
+  and Qt Creator/Designer.
+
+PROJECTS & EXPERIMENTS:
+-----------------------
+- Agentic Coding: This Malina-OS platform is a sandbox for 
+  autonomous engineering and human-AI partnership.
+- Anti-Cheat Tools: Scalable detection approaches leveraging 
+  cloud-hosted telemetry pipelines.
+- NerfVR Ultimate Championship: Full SDK integration and QA.
 
 PERSONAL INTERESTS:
 -------------------
-Beyond the terminal, I'm fueled by a mix of high-energy activities 
-and creative escapes:
+- 🎵 Music & Festivals: Regular at music festivals and always 
+  hunting for new electronic and live sets.
+- 🐕 Animals: Big fan of dogs; usually found hanging out with a 
+  furry friend when not at the terminal.
+- ✈️ Travel: Passionate about exploring new cultures and terrains.
+- 🏋️ Fitness: Keeping the mind sharp by staying active and consistent.
 
-- 🎵 Music & Festivals: There's nothing like the energy of a live 
-  set. I'm a regular at music festivals and always looking for 
-  new sounds.
-- 🐕 Animals: Big fan of dogs and all things furry. If I'm not 
-  coding, I'm probably hanging out with a four-legged friend.
-- ✈️ Travel: I love exploring new cultures and terrains. Every 
-  trip is a new perspective.
-- 🏋️ Fitness: Keeping the mind sharp by keeping the body active. 
-  Big on working out and staying consistent.
-
-CONTACT:
---------
-Use the "Address Book" on the desktop or reach out directly at:
-jmalina7897@gmail.com`;
+EDUCATION:
+----------
+SUNY Buffalo | Combined BS/MS in Computer Science Engineering | 2020`;
 
 const AboutMe: React.FC = () => {
   return (
