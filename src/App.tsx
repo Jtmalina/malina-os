@@ -297,13 +297,15 @@ function App() {
         items={startMenuItems}
       />
 
-      <Taskbar 
-        windows={windows.filter(w => !w.hideFromMenu || w.isOpen)} 
-        activeWindowId={activeWindowId} 
-        onTaskClick={toggleWindow}
-        onStartClick={toggleStartMenu}
-        isStartMenuOpen={isStartMenuOpen}
-      />
+      <div className="taskbar-wrapper">
+        <Taskbar 
+          windows={windows.filter(w => !w.hideFromMenu || w.isOpen)} 
+          activeWindowId={activeWindowId} 
+          onTaskClick={toggleWindow}
+          onStartClick={toggleStartMenu}
+          isStartMenuOpen={isStartMenuOpen}
+        />
+      </div>
 
       {dialog && (
         <Dialog 

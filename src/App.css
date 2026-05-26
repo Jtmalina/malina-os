@@ -1,18 +1,14 @@
 .desktop {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   height: 100dvh;
   background-color: var(--win-teal);
   position: relative;
-  display: flex;
-  flex-direction: column;
   overflow: hidden;
-  /* Account for mobile browser bars and notches */
-  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 8px);
 }
 
 .icons-container {
-  flex: 1;
+  height: 100%;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -27,12 +23,22 @@
   top: 0;
   left: 0;
   width: 100%;
-  /* 32px is taskbar height + 2px border + 8px buffer */
-  bottom: calc(42px + env(safe-area-inset-bottom, 0px)); 
+  bottom: calc(34px + env(safe-area-inset-bottom, 0px));
   pointer-events: none;
   z-index: 2;
 }
 
 .windows-container > * {
   pointer-events: auto;
+}
+
+/* Fixed Taskbar Wrapper to handle mobile offsets reliably */
+.taskbar-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  background-color: var(--win-gray);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
