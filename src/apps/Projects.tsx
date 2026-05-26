@@ -54,7 +54,6 @@ const Projects: React.FC<ProjectsProps> = ({ onLaunch }) => {
       { 
         name: 'Marathon', 
         type: 'Executable', 
-    ...
         size: '120 MB', 
         icon: '🔫', 
         launchApp: 'marathon'
