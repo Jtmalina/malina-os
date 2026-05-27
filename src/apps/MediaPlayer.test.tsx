@@ -13,8 +13,8 @@ describe('MediaPlayer App', () => {
     expect(screen.getByTitle(/Test Video/i)).toBeInTheDocument();
   });
 
-  it('contains an iframe for the video', () => {
-    render(<MediaPlayer />);
+  it('contains an iframe for the video when URL is provided', () => {
+    render(<MediaPlayer videoUrl="https://www.youtube.com/embed/test" />);
     const iframe = document.querySelector('iframe');
     expect(iframe).toBeInTheDocument();
     expect(iframe?.src).toContain('youtube.com');
