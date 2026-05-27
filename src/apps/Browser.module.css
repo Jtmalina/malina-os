@@ -186,3 +186,181 @@
   padding: 0 5px;
   font-size: 10px;
 }
+
+/* JulianTube Styles */
+.juliantube {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #f1f1f1;
+  color: #000;
+  font-family: Roboto, Arial, sans-serif;
+}
+
+.jtHeader {
+  background-color: #fff;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.jtLogo {
+  color: #ff0000;
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.jtSearch {
+  flex: 1;
+  max-width: 600px;
+  display: flex;
+}
+
+.jtSearch input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 2px 0 0 2px;
+}
+
+.jtSearch button {
+  padding: 0 20px;
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  border-left: none;
+  cursor: pointer;
+}
+
+.jtContent {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.jtSidebar {
+  width: 200px;
+  padding: 15px 0;
+  border-right: 1px solid #ddd;
+  background-color: #fff;
+}
+
+.jtSidebarItem {
+  padding: 10px 25px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.jtSidebarItem:hover {
+  background-color: #f2f2f2;
+}
+
+.jtSidebarItemActive {
+  background-color: #e5e5e5;
+  font-weight: 500;
+}
+
+.jtMain {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  background-color: #f9f9f9;
+}
+
+.jtGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.jtVideoCard {
+  cursor: pointer;
+}
+
+.jtThumbnail {
+  aspect-ratio: 16/9;
+  background-color: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+
+.jtThumbImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.jtVideoInfo {
+  display: flex;
+  gap: 12px;
+}
+
+.jtAvatar {
+  width: 36px;
+  height: 36px;
+  background-color: #ccc;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.jtText {
+  flex: 1;
+}
+
+.jtTitle {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 4px;
+  color: #0f0f0f;
+}
+
+.jtMeta {
+  font-size: 14px;
+  color: #606060;
+}
+
+/* Watch Page */
+.jtWatchView {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.jtPlayer {
+  aspect-ratio: 16/9;
+  background-color: #000;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.jtWatchTitle {
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.jtWatchMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
