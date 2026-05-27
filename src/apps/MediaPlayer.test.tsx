@@ -3,9 +3,14 @@ import { describe, it, expect } from 'vitest';
 import MediaPlayer from './MediaPlayer';
 
 describe('MediaPlayer App', () => {
-  it('renders correctly with video iframe', () => {
+  it('renders the placeholder when no video is loaded', () => {
     render(<MediaPlayer />);
-    expect(screen.getByTitle(/Trailer/i)).toBeInTheDocument();
+    expect(screen.getByText(/SELECT A FILE TO PLAY/i)).toBeInTheDocument();
+  });
+
+  it('renders correctly with video iframe when URL is provided', () => {
+    render(<MediaPlayer videoUrl="https://www.youtube.com/embed/test" title="Test Video" />);
+    expect(screen.getByTitle(/Test Video/i)).toBeInTheDocument();
   });
 
   it('contains an iframe for the video', () => {

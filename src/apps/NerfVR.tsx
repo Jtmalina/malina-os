@@ -70,7 +70,7 @@ const NerfVR: React.FC<NerfVRProps> = ({ onLaunch, onClose, skipLoading }) => {
         <div 
           className={styles.menuItem} 
           onClick={() => onLaunch?.('media-player', {
-            videoUrl: 'https://www.youtube.com/embed/AaZvrwNg63o?autoplay=1',
+            videoUrl: 'https://www.youtube.com/embed/iDs9Y2TguWg?autoplay=1',
             title: 'Nerf VR Trailer'
           })}
         >
