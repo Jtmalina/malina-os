@@ -122,8 +122,8 @@
 .cell {
   width: 20px;
   height: 20px;
-  min-width: 20px;
-  min-height: 20px;
+  /* Force rigid sizing so rows never shift */
+  flex: 0 0 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -133,17 +133,15 @@
   border: 2px solid;
   border-color: var(--win-white) var(--win-dark-gray) var(--win-dark-gray) var(--win-white);
   cursor: default;
-  box-sizing: border-box; /* Crucial: border width won't change total size */
+  box-sizing: border-box;
   line-height: 1;
 }
 
 .cell.revealed {
+  /* 1px border + 1px padding = 2px total offset, matching the unrevealed 2px border */
   border: 1px solid var(--win-dark-gray);
+  padding: 1px;
   background-color: #c0c0c0;
-  /* To keep size 20px with 1px border, we'd need to adjust, 
-     but border-box handles it. However, 1px border looks 
-     different than 2px beveled. Let's make it look "inset" */
-  padding: 0;
 }
 
 .mine {
