@@ -174,29 +174,38 @@ const Browser: React.FC<BrowserProps> = ({ initialUrl }) => {
     );
   };
 
-  const renderGeoCities = () => {
+  const renderMalinaChat = () => {
     return (
-      <div className={styles.geocities}>
-        <div className={styles.geoMarquee}>
-          *** WELCOME TO JULIAN'S HOME PAGE! *** PLEASE SIGN MY GUESTBOOK ***
-        </div>
-        <div className={styles.geoHeader}>JULIAN'S CORNER</div>
-        <div className={styles.geoUnderConstruction}>
-          🚧 UNDER CONSTRUCTION 🚧<br/>
-          STAY TUNED FOR UPDATES!
-        </div>
-        <div className={styles.geoContent}>
-          <p>Hi! I'm a software engineer who loves retro computers and building cool things.</p>
-          <p>On this site, you'll find my favorite links, some cool gifs, and maybe a Java applet if I can figure out how to code it!</p>
-          <div style={{ marginTop: '20px' }}>
-            <span style={{ fontSize: '40px' }}>🎸 🕹️ 🛰️ 🛸</span>
+      <div className={styles.malinachat}>
+        <div className={styles.chatHeader}>
+          <span>💬 Malina Chat (v0.9.1)</span>
+          <div style={{ marginLeft: 'auto', display: 'flex', gap: '10px' }}>
+            <span>Users Online: 1,422</span>
+            <span>Room: #general</span>
           </div>
         </div>
-        <div className={styles.geoCounter}>
-          VISITOR #000452
+        <div className={styles.chatContent}>
+          <div className={styles.chatLog}>
+            <div className={styles.chatMsg}><span className={styles.chatUser}>System:</span> Welcome to Malina Chat! Please follow the rules.</div>
+            <div className={styles.chatMsg}><span className={styles.chatUser} style={{ color: '#ff0000' }}>CoolGuy95:</span> anyone want to trade some midi files?</div>
+            <div className={styles.chatMsg}><span className={styles.chatUser} style={{ color: '#0000ff' }}>RetroFan:</span> just saw the new Marathon trailer on JulianTube, looks sick!</div>
+            <div className={styles.chatMsg}><span className={styles.chatUser} style={{ color: '#008000' }}>WebMaster:</span> @RetroFan yeah, the matchmaking integration is supposed to be top tier.</div>
+            <div className={styles.chatMsg}><span className={styles.chatUser} style={{ color: '#ff00ff' }}>NeonNight:</span> asdlkjasdlkjsa lol</div>
+            <div className={styles.chatMsg}><span className={styles.chatUser}>System:</span> *** Julian has joined the room ***</div>
+          </div>
+          <div className={styles.chatUserList}>
+            <div style={{ fontWeight: 'bold', marginBottom: '5px' }}>Users</div>
+            <div>👑 Julian</div>
+            <div>Admin_Bot</div>
+            <div>CoolGuy95</div>
+            <div>RetroFan</div>
+            <div>WebMaster</div>
+            <div>NeonNight</div>
+          </div>
         </div>
-        <div style={{ marginTop: '30px' }}>
-          <button className="outset" onClick={() => navigate('malina://home')}>&lt;-- Go Back</button>
+        <div className={styles.chatInputRow}>
+          <input type="text" placeholder="Type a message..." className={styles.chatInput} />
+          <button className="outset">Send</button>
         </div>
       </div>
     );
@@ -266,16 +275,16 @@ const Browser: React.FC<BrowserProps> = ({ initialUrl }) => {
                 <span className={styles.linkIcon}>🔫</span>
                 <span className={styles.linkLabel}>Marathon Credits</span>
               </div>
-              <div className={styles.linkItem} onClick={() => navigate('malina://geocities')}>
-                <span className={styles.linkIcon}>🏠</span>
-                <span className={styles.linkLabel}>Julian's Corner</span>
+              <div className={styles.linkItem} onClick={() => navigate('malina://chat')}>
+                <span className={styles.linkIcon}>💬</span>
+                <span className={styles.linkLabel}>Malina Chat</span>
               </div>
             </div>
           </div>
         ) : url.startsWith('malina://juliantube') ? (
           renderJulianTube()
-        ) : url === 'malina://geocities' ? (
-          renderGeoCities()
+        ) : url === 'malina://chat' ? (
+          renderMalinaChat()
         ) : isError ? (
           <div className={styles.errorView}>
             <div className={styles.errorIcon}>🚫</div>

@@ -364,62 +364,72 @@
   border-bottom: 1px solid #ddd;
 }
 
-/* GeoCities Styles */
-.geocities {
+/* Malina Chat Styles */
+.malinachat {
   height: 100%;
-  background-color: #000;
-  background-image: url('https://web.archive.org/web/20091027083234im_/http://geocities.com/Heartland/Acres/9887/stars.gif');
-  color: #0f0;
-  padding: 40px;
-  overflow-y: auto;
-  font-family: "Comic Sans MS", "Comic Sans", cursive;
-  text-align: center;
-}
-
-.geoHeader {
-  font-size: 36px;
-  background: linear-gradient(to right, #ff00ff, #00ffff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 20px;
-  font-weight: bold;
-}
-
-.geoUnderConstruction {
-  border: 4px dashed #ffff00;
-  padding: 10px;
-  margin: 20px auto;
-  max-width: 400px;
-  color: #ffff00;
-  font-weight: bold;
-}
-
-.geoContent {
-  max-width: 600px;
-  margin: 0 auto;
-  background-color: rgba(0, 0, 255, 0.2);
-  padding: 20px;
-  border: 2px solid #00ffff;
-  box-shadow: 10px 10px #ff00ff;
-  line-height: 1.6;
-}
-
-.geoMarquee {
-  background-color: #ffff00;
+  background-color: #dfdfdf;
+  display: flex;
+  flex-direction: column;
   color: #000;
-  padding: 5px;
-  font-weight: bold;
-  margin-bottom: 20px;
+  font-family: 'MS Sans Serif', Arial, sans-serif;
 }
 
-.geoCounter {
-  margin-top: 40px;
-  font-family: monospace;
-  background-color: #333;
-  color: #f00;
-  padding: 5px 15px;
-  border: 1px solid #999;
-  display: inline-block;
-  font-size: 24px;
+.chatHeader {
+  background-color: var(--win-blue);
+  color: white;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  display: flex;
+}
+
+.chatContent {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  padding: 5px;
+  gap: 5px;
+}
+
+.chatLog {
+  flex: 1;
+  background-color: white;
+  border: 2px solid;
+  border-color: var(--win-dark-gray) var(--win-white) var(--win-white) var(--win-dark-gray);
+  padding: 10px;
+  overflow-y: auto;
+  font-size: 12px;
+}
+
+.chatMsg {
+  margin-bottom: 5px;
+}
+
+.chatUser {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.chatUserList {
+  width: 120px;
+  background-color: white;
+  border: 2px solid;
+  border-color: var(--win-dark-gray) var(--win-white) var(--win-white) var(--win-dark-gray);
+  padding: 5px;
+  font-size: 11px;
+}
+
+.chatInputRow {
+  padding: 10px;
+  background-color: var(--win-gray);
+  border-top: 1px solid var(--win-dark-gray);
+  display: flex;
+  gap: 10px;
+}
+
+.chatInput {
+  flex: 1;
+  border: 1px solid var(--win-dark-gray);
+  padding: 4px;
 }
 
