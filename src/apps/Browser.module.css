@@ -364,3 +364,62 @@
   border-bottom: 1px solid #ddd;
 }
 
+/* GeoCities Styles */
+.geocities {
+  height: 100%;
+  background-color: #000;
+  background-image: url('https://web.archive.org/web/20091027083234im_/http://geocities.com/Heartland/Acres/9887/stars.gif');
+  color: #0f0;
+  padding: 40px;
+  overflow-y: auto;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  text-align: center;
+}
+
+.geoHeader {
+  font-size: 36px;
+  background: linear-gradient(to right, #ff00ff, #00ffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.geoUnderConstruction {
+  border: 4px dashed #ffff00;
+  padding: 10px;
+  margin: 20px auto;
+  max-width: 400px;
+  color: #ffff00;
+  font-weight: bold;
+}
+
+.geoContent {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 255, 0.2);
+  padding: 20px;
+  border: 2px solid #00ffff;
+  box-shadow: 10px 10px #ff00ff;
+  line-height: 1.6;
+}
+
+.geoMarquee {
+  background-color: #ffff00;
+  color: #000;
+  padding: 5px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.geoCounter {
+  margin-top: 40px;
+  font-family: monospace;
+  background-color: #333;
+  color: #f00;
+  padding: 5px 15px;
+  border: 1px solid #999;
+  display: inline-block;
+  font-size: 24px;
+}
+

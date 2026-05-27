@@ -174,6 +174,34 @@ const Browser: React.FC<BrowserProps> = ({ initialUrl }) => {
     );
   };
 
+  const renderGeoCities = () => {
+    return (
+      <div className={styles.geocities}>
+        <div className={styles.geoMarquee}>
+          *** WELCOME TO JULIAN'S HOME PAGE! *** PLEASE SIGN MY GUESTBOOK ***
+        </div>
+        <div className={styles.geoHeader}>JULIAN'S CORNER</div>
+        <div className={styles.geoUnderConstruction}>
+          🚧 UNDER CONSTRUCTION 🚧<br/>
+          STAY TUNED FOR UPDATES!
+        </div>
+        <div className={styles.geoContent}>
+          <p>Hi! I'm a software engineer who loves retro computers and building cool things.</p>
+          <p>On this site, you'll find my favorite links, some cool gifs, and maybe a Java applet if I can figure out how to code it!</p>
+          <div style={{ marginTop: '20px' }}>
+            <span style={{ fontSize: '40px' }}>🎸 🕹️ 🛰️ 🛸</span>
+          </div>
+        </div>
+        <div className={styles.geoCounter}>
+          VISITOR #000452
+        </div>
+        <div style={{ marginTop: '30px' }}>
+          <button className="outset" onClick={() => navigate('malina://home')}>&lt;-- Go Back</button>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className={styles.browser}>
       <div className={styles.toolbar}>
@@ -230,7 +258,7 @@ const Browser: React.FC<BrowserProps> = ({ initialUrl }) => {
                 <span className={styles.linkIcon}>▶️</span>
                 <span className={styles.linkLabel}>JulianTube</span>
               </div>
-              <div className={styles.linkItem} onClick={() => navigate('https://github.com/Jtmalina/malina-os')}>
+              <div className={styles.linkItem} onClick={() => window.open('https://github.com/Jtmalina/malina-os', '_blank')}>
                 <span className={styles.linkIcon}>🐙</span>
                 <span className={styles.linkLabel}>GitHub</span>
               </div>
@@ -238,14 +266,16 @@ const Browser: React.FC<BrowserProps> = ({ initialUrl }) => {
                 <span className={styles.linkIcon}>🔫</span>
                 <span className={styles.linkLabel}>Marathon Credits</span>
               </div>
-              <div className={styles.linkItem} onClick={() => navigate('malina://portfolio')}>
-                <span className={styles.linkIcon}>💼</span>
-                <span className={styles.linkLabel}>My Portfolio</span>
+              <div className={styles.linkItem} onClick={() => navigate('malina://geocities')}>
+                <span className={styles.linkIcon}>🏠</span>
+                <span className={styles.linkLabel}>Julian's Corner</span>
               </div>
             </div>
           </div>
         ) : url.startsWith('malina://juliantube') ? (
           renderJulianTube()
+        ) : url === 'malina://geocities' ? (
+          renderGeoCities()
         ) : isError ? (
           <div className={styles.errorView}>
             <div className={styles.errorIcon}>🚫</div>
