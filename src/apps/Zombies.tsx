@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './Zombies.module.css';
 
 interface ZombiesProps {
-  onLaunch?: (id: string) => void;
+  onLaunch?: (id: string, data?: any) => void;
   onClose?: () => void;
   skipLoading?: boolean;
 }
