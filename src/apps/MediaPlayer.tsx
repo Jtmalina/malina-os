@@ -1,14 +1,22 @@
 import React from 'react';
 
-const MediaPlayer: React.FC = () => {
+interface MediaPlayerProps {
+  videoUrl?: string;
+  title?: string;
+}
+
+const MediaPlayer: React.FC<MediaPlayerProps> = ({ 
+  videoUrl = "https://www.youtube.com/embed/MXhQbF7TlbA?autoplay=1",
+  title = "Trailer"
+}) => {
   return (
     <div style={{ backgroundColor: '#000', height: '100%', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 1, position: 'relative' }}>
         <iframe
           width="100%"
           height="100%"
-          src="https://www.youtube.com/embed/MXhQbF7TlbA?autoplay=1"
-          title="Marathon Trailer"
+          src={videoUrl}
+          title={title}
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen

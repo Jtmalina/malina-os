@@ -188,7 +188,7 @@ function App() {
     setDialog({ title, message, onOk });
   };
 
-  const focusWindow = (id: string) => {
+  const focusWindow = (id: string, data?: any) => {
     if (id === 'malina-os-portfolio') {
       showDialog('System Message', "You're already inside it", () => {
         setDialog(null);
@@ -206,7 +206,16 @@ function App() {
     setActiveWindowId(id);
     setWindows(prev => {
       const maxZ = Math.max(...prev.map(w => w.zIndex), 100);
-      return prev.map(w => w.id === id ? { ...w, zIndex: maxZ + 1, isMinimized: false, isOpen: true } : w);
+      return prev.map(w => {
+        if (w.id === id) {
+          const updated = { ...w, zIndex: maxZ + 1, isMinimized: false, isOpen: true };
+          if (id === 'media-player' && data) {
+            updated.content = <MediaPlayer videoUrl={data.videoUrl} title={data.title} />;
+          }
+          return updated;
+        }
+        return w;
+      });
     });
   };
 

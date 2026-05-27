@@ -106,7 +106,15 @@ const Zombies: React.FC<ZombiesProps> = ({ onLaunch, onClose, skipLoading }) => 
         <div className={styles.zombiesLogo} style={{ marginBottom: '40px', textAlign: 'left' }}>
           CITY STREETS
         </div>
-        <div className={styles.menuItem} onClick={() => onLaunch?.('media-player')}>PLAY TRAILER</div>
+        <div 
+          className={styles.menuItem} 
+          onClick={() => onLaunch?.('media-player', {
+            videoUrl: 'https://www.youtube.com/embed/6m6S_G8E898?autoplay=1',
+            title: 'Black Ops 3 Zombies Trailer'
+          })}
+        >
+          PLAY TRAILER
+        </div>
         <div className={styles.menuItem} onClick={() => setView('screenshots')}>SCREENSHOTS</div>
         <div className={styles.menuItem} onClick={() => setView('settings')}>SETTINGS</div>
         <div className={styles.menuItem} onClick={() => window.open('https://github.com/Jtmalina/zm_streets', '_blank')}>

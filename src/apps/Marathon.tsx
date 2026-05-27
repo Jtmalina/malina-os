@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './Marathon.module.css';
 
 interface MarathonProps {
-  onLaunch?: (id: string) => void;
+  onLaunch?: (id: string, data?: any) => void;
   onClose?: () => void;
   skipLoading?: boolean;
 }
@@ -82,7 +82,15 @@ const Marathon: React.FC<MarathonProps> = ({ onLaunch, onClose, skipLoading }) =
     <div className={styles.container}>
       <div className={styles.menu}>
         <div className={styles.logo} style={{ marginBottom: '40px' }}>MARATHON</div>
-        <div className={styles.menuItem} onClick={() => onLaunch?.('media-player')}>PLAY</div>
+        <div 
+          className={styles.menuItem} 
+          onClick={() => onLaunch?.('media-player', { 
+            videoUrl: 'https://www.youtube.com/embed/MXhQbF7TlbA?autoplay=1',
+            title: 'Marathon Trailer'
+          })}
+        >
+          PLAY
+        </div>
         <div className={styles.menuItem} onClick={() => setView('options')}>OPTIONS</div>
         <div className={styles.menuItem} onClick={() => setView('credits')}>CREDITS</div>
         <div className={styles.menuItem} onClick={onClose}>QUIT</div>
