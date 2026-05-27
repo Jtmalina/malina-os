@@ -28,7 +28,7 @@ const VIDEOS = [
     channel: 'Jtmalina', 
     views: '12K views', 
     time: '3 months ago',
-    url: 'https://www.youtube.com/embed/6m6S_G8E898?autoplay=1'
+    url: 'https://www.youtube.com/embed/efJd6TNYxdc?autoplay=1'
   }
 ];
 

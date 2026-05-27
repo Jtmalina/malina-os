@@ -109,7 +109,7 @@ const Zombies: React.FC<ZombiesProps> = ({ onLaunch, onClose, skipLoading }) => 
         <div 
           className={styles.menuItem} 
           onClick={() => onLaunch?.('media-player', {
-            videoUrl: 'https://www.youtube.com/embed/6m6S_G8E898?autoplay=1',
+            videoUrl: 'https://www.youtube.com/embed/efJd6TNYxdc?autoplay=1',
             title: 'Black Ops 3 Zombies Trailer'
           })}
         >
