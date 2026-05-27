@@ -133,11 +133,17 @@
   border: 2px solid;
   border-color: var(--win-white) var(--win-dark-gray) var(--win-dark-gray) var(--win-white);
   cursor: default;
+  box-sizing: border-box; /* Crucial: border width won't change total size */
+  line-height: 1;
 }
 
 .cell.revealed {
   border: 1px solid var(--win-dark-gray);
   background-color: #c0c0c0;
+  /* To keep size 20px with 1px border, we'd need to adjust, 
+     but border-box handles it. However, 1px border looks 
+     different than 2px beveled. Let's make it look "inset" */
+  padding: 0;
 }
 
 .mine {
