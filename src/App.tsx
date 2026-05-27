@@ -21,6 +21,12 @@ import { playSound } from './utils/sounds'
 
 import StartMenu from './components/StartMenu'
 
+interface LaunchData {
+  videoUrl?: string;
+  title?: string;
+  [key: string]: any;
+}
+
 interface WindowInfo {
   id: string;
   title: string;
@@ -188,7 +194,7 @@ function App() {
     setDialog({ title, message, onOk });
   };
 
-  const focusWindow = (id: string, data?: any) => {
+  const focusWindow = (id: string, data?: LaunchData) => {
     if (id === 'malina-os-portfolio') {
       showDialog('System Message', "You're already inside it", () => {
         setDialog(null);

@@ -41,8 +41,9 @@ describe('Contact App', () => {
     
     // Mock window.location.href
     const originalLocation = window.location;
-    delete (window as any).location;
-    window.location = { ...originalLocation, href: '' } as any;
+    // @ts-expect-error - overriding location for test
+    delete window.location;
+    window.location = { ...originalLocation, href: '' } as unknown as Location;
 
     fireEvent.click(sendBtn);
     expect(screen.getByText('Sending message...')).toBeInTheDocument();

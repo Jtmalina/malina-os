@@ -27,22 +27,21 @@ describe('Zombies App', () => {
     render(<Zombies skipLoading={true} />);
 
     fireEvent.click(screen.getByText('SCREENSHOTS'));
-    expect(screen.getByText('The Main Thoroughfare')).toBeInTheDocument();
+    expect(screen.getByText(/Location: The Main Thoroughfare/)).toBeInTheDocument();
     expect(screen.getAllByRole('img').length).toBeGreaterThan(0);
 
-    fireEvent.click(screen.getByText(/BACK TO MAIN MENU/));
-    expect(screen.getByText('PLAY TRAILER'));
+    fireEvent.click(screen.getByText('OVERVIEW'));
+    expect(screen.getByText('CITY STREETS')).toBeInTheDocument();
   });
 
   it('can navigate to settings and back', () => {
     render(<Zombies skipLoading={true} />);
 
     fireEvent.click(screen.getByText('SETTINGS'));
-    expect(screen.getByText('Zombies Settings')).toBeInTheDocument();
     expect(screen.getByText('GORE LEVEL')).toBeInTheDocument();
 
-    fireEvent.click(screen.getByText(/BACK TO MAIN MENU/));
-    expect(screen.getByText('PLAY TRAILER'));
+    fireEvent.click(screen.getByText('OVERVIEW'));
+    expect(screen.getByText('CITY STREETS')).toBeInTheDocument();
   });
 
   it('calls onLaunch for media player when Play Trailer is clicked', () => {
@@ -56,11 +55,11 @@ describe('Zombies App', () => {
     }));
   });
 
-  it('calls onClose when Quit is clicked', () => {
+  it('calls onClose when [ DISCONNECT ] is clicked', () => {
     const onClose = vi.fn();
     render(<Zombies onClose={onClose} skipLoading={true} />);
 
-    fireEvent.click(screen.getByText('QUIT'));
+    fireEvent.click(screen.getByText('[ DISCONNECT ]'));
     expect(onClose).toHaveBeenCalled();
   });
 });

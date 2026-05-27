@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './Marathon.module.css';
 
 interface MarathonProps {
-  onLaunch?: (id: string, data?: any) => void;
+  onLaunch?: (id: string, data?: { videoUrl?: string; title?: string }) => void;
   onClose?: () => void;
   skipLoading?: boolean;
 }
