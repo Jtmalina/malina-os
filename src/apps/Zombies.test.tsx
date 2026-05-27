@@ -13,7 +13,7 @@ describe('Zombies App', () => {
 
   it('shows loading screen initially', () => {
     render(<Zombies />);
-    expect(screen.getByText(/CITY STREETS/)).toBeInTheDocument();
+    expect(screen.getByText((content) => content.includes('CITY STREETS'))).toBeInTheDocument();
   });
 
   it('transitions to main menu when skipLoading is true', () => {

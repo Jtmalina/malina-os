@@ -24,7 +24,6 @@ import StartMenu from './components/StartMenu'
 interface LaunchData {
   videoUrl?: string;
   title?: string;
-  [key: string]: any;
 }
 
 interface WindowInfo {
