@@ -5,7 +5,7 @@ import MediaPlayer from './MediaPlayer';
 describe('MediaPlayer App', () => {
   it('renders correctly with video iframe', () => {
     render(<MediaPlayer />);
-    expect(screen.getByTitle(/Marathon Trailer/i)).toBeInTheDocument();
+    expect(screen.getByTitle(/Trailer/i)).toBeInTheDocument();
   });
 
   it('contains an iframe for the video', () => {

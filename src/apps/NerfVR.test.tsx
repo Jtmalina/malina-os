@@ -46,6 +46,9 @@ describe('NerfVR App', () => {
     render(<NerfVR onLaunch={onLaunch} skipLoading={true} />);
 
     fireEvent.click(screen.getByText('PLAY TRAILER'));
-    expect(onLaunch).toHaveBeenCalledWith('media-player');
+    expect(onLaunch).toHaveBeenCalledWith('media-player', expect.objectContaining({
+      videoUrl: expect.stringContaining('youtube.com'),
+      title: 'Nerf VR Trailer'
+    }));
     });
     });

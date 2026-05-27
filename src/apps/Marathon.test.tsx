@@ -39,7 +39,10 @@ describe('Marathon App', () => {
     render(<Marathon onLaunch={onLaunch} skipLoading={true} />);
 
     fireEvent.click(screen.getByText('PLAY'));
-    expect(onLaunch).toHaveBeenCalledWith('media-player');
+    expect(onLaunch).toHaveBeenCalledWith('media-player', expect.objectContaining({
+      videoUrl: expect.stringContaining('youtube.com'),
+      title: 'Marathon Trailer'
+    }));
   });
 
   it('calls onClose when Quit is clicked', () => {
