@@ -16,6 +16,7 @@ import Zombies from './apps/Zombies'
 import Solitaire from './apps/Solitaire'
 import NerfVR from './apps/NerfVR'
 import BootScreen from './components/BootScreen'
+import ShutdownScreen from './components/ShutdownScreen'
 import Dialog from './components/Dialog'
 import { playSound } from './utils/sounds'
 
@@ -41,6 +42,7 @@ interface WindowInfo {
 
 function App() {
   const [isBooting, setIsBooting] = useState(true);
+  const [isShuttingDown, setIsShuttingDown] = useState(false);
   const [isStartMenuOpen, setIsStartMenuOpen] = useState(false);
 
   const [windows, setWindows] = useState<WindowInfo[]>([
@@ -260,12 +262,21 @@ function App() {
     setIsStartMenuOpen(!isStartMenuOpen);
   };
 
+  const handleShutdown = () => {
+    setIsStartMenuOpen(false);
+    setIsShuttingDown(true);
+  };
+
   const startMenuItems = windows.filter(w => !w.hideFromMenu).map(w => ({
     id: w.id,
     label: w.title.split(' - ')[0],
     icon: w.icon,
     onClick: () => toggleWindow(w.id),
   }));
+
+  if (isShuttingDown) {
+    return <ShutdownScreen />;
+  }
 
   if (isBooting) {
     return <BootScreen onBoot={handleBoot} />;
@@ -308,6 +319,7 @@ function App() {
       <StartMenu 
         isOpen={isStartMenuOpen} 
         onClose={() => setIsStartMenuOpen(false)} 
+        onShutdown={handleShutdown}
         items={startMenuItems}
       />
 

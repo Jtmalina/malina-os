@@ -11,10 +11,11 @@ interface StartMenuItem {
 interface StartMenuProps {
   isOpen: boolean;
   onClose: () => void;
+  onShutdown?: () => void;
   items: StartMenuItem[];
 }
 
-const StartMenu: React.FC<StartMenuProps> = ({ isOpen, onClose, items }) => {
+const StartMenu: React.FC<StartMenuProps> = ({ isOpen, onClose, onShutdown, items }) => {
   if (!isOpen) return null;
 
   return (
@@ -41,7 +42,13 @@ const StartMenu: React.FC<StartMenuProps> = ({ isOpen, onClose, items }) => {
             </div>
           ))}
           <div className={styles.divider} />
-          <div className={styles.menuItem}>
+          <div 
+            className={styles.menuItem}
+            onClick={() => {
+              onShutdown?.();
+              onClose();
+            }}
+          >
             <span className={styles.itemIcon}>🚪</span>
             <span className={styles.itemLabel}>Shut Down...</span>
           </div>

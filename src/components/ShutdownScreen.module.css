@@ -1,0 +1,36 @@
+.shutdownScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  cursor: pointer;
+  animation: fadeToBlack 2s ease-in forwards;
+}
+
+.message {
+  color: #ff6600; /* Classic orange text */
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 24px;
+  text-align: center;
+  padding: 20px;
+  opacity: 0;
+  animation: showSafeMessage 1s ease-in 2.5s forwards;
+}
+
+@keyframes fadeToBlack {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes showSafeMessage {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
