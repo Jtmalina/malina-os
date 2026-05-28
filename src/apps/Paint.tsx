@@ -61,7 +61,7 @@ const Paint: React.FC = () => {
 
       ctx.beginPath();
       ctx.strokeStyle = color;
-      ctx.lineWidth = 2;
+      ctx.lineWidth = brushSize;
       ctx.lineCap = 'round';
       ctx.moveTo(lastPos.current.x, lastPos.current.y);
       ctx.lineTo(currentX, currentY);
