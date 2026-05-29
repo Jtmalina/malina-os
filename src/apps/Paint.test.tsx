@@ -25,11 +25,23 @@ describe('Paint App', () => {
     expect(screen.getByText(/Edit/)).toBeInTheDocument();
     
     // Tools
-    expect(screen.getByText('🖌️')).toBeInTheDocument();
-    expect(screen.getByText('🗑️')).toBeInTheDocument();
+    expect(screen.getByTitle('Brush')).toBeInTheDocument();
+    expect(screen.getByTitle('Fill')).toBeInTheDocument();
+    expect(screen.getByTitle('Pick Color')).toBeInTheDocument();
+    expect(screen.getByTitle('Clear')).toBeInTheDocument();
     
     const canvas = document.querySelector('canvas');
     expect(canvas).toBeInTheDocument();
+  });
+
+  it('switches tools when clicked', () => {
+    render(<Paint />);
+    const fillBtn = screen.getByTitle('Fill');
+    fireEvent.click(fillBtn);
+    
+    // Check for inset class on active tool (visual verification is hard in RTL, 
+    // but we can check if it has the class if we use a test-id or just verify it doesn't crash)
+    expect(fillBtn).toHaveClass(/inset/);
   });
 
   it('updates tool size on range change', () => {
