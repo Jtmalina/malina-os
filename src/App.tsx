@@ -87,7 +87,7 @@ function App() {
       zIndex: 103,
       content: <Paint />,
       icon: '🎨',
-      defaultSize: { width: 700, height: 550 },
+      defaultSize: { width: 600, height: 480 },
       initialPosition: { x: 80, y: 120 },
     },
     {
