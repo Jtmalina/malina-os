@@ -202,6 +202,7 @@ function App() {
       icon: '⚙️',
       defaultSize: { width: 400, height: 450 },
       initialPosition: { x: 200, y: 150 },
+      hideFromMenu: true,
     },
   ]);
 
