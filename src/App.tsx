@@ -1,28 +1,29 @@
-import { useState } from 'react'
+import { useState, lazy, Suspense } from 'react'
 import './App.css'
 import Taskbar from './components/Taskbar'
 import Window from './components/Window'
 import DesktopIcon from './components/DesktopIcon'
-import AboutMe from './apps/AboutMe'
-import Projects from './apps/Projects'
-import Contact from './apps/Contact'
-import Paint from './apps/Paint'
-import MediaPlayer from './apps/MediaPlayer'
-import Minesweeper from './apps/Minesweeper'
-import Marathon from './apps/Marathon'
-import Browser from './apps/Browser'
-import ProjectProperties from './apps/ProjectProperties'
-import Zombies from './apps/Zombies'
-import Solitaire from './apps/Solitaire'
-import NerfVR from './apps/NerfVR'
-import ControlPanel from './apps/ControlPanel'
 import BootScreen from './components/BootScreen'
 import ShutdownScreen from './components/ShutdownScreen'
 import Dialog from './components/Dialog'
 import ContextMenu, { ContextMenuItem } from './components/ContextMenu'
 import { playSound } from './utils/sounds'
-
 import StartMenu from './components/StartMenu'
+
+// Lazy load apps
+const AboutMe = lazy(() => import('./apps/AboutMe'))
+const Projects = lazy(() => import('./apps/Projects'))
+const Contact = lazy(() => import('./apps/Contact'))
+const Paint = lazy(() => import('./apps/Paint'))
+const MediaPlayer = lazy(() => import('./apps/MediaPlayer'))
+const Minesweeper = lazy(() => import('./apps/Minesweeper'))
+const Marathon = lazy(() => import('./apps/Marathon'))
+const Browser = lazy(() => import('./apps/Browser'))
+const ProjectProperties = lazy(() => import('./apps/ProjectProperties'))
+const Zombies = lazy(() => import('./apps/Zombies'))
+const Solitaire = lazy(() => import('./apps/Solitaire'))
+const NerfVR = lazy(() => import('./apps/NerfVR'))
+const ControlPanel = lazy(() => import('./apps/ControlPanel'))
 
 interface LaunchData {
   videoUrl?: string;
@@ -368,7 +369,20 @@ function App() {
             defaultSize={w.defaultSize}
             initialPosition={w.initialPosition}
           >
-            {w.content}
+            <Suspense fallback={
+              <div style={{ 
+                height: '100%', 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center', 
+                backgroundColor: 'var(--win-gray)',
+                fontSize: '12px' 
+              }}>
+                Loading Application...
+              </div>
+            }>
+              {w.content}
+            </Suspense>
           </Window>
         ))}
       </div>
