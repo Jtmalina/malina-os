@@ -10,13 +10,12 @@
 .icons-container {
   height: calc(100% - 30px - env(safe-area-inset-bottom, 0px));
   padding: 10px;
-  position: relative; /* Base for absolute icons */
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 20px;
   z-index: 1;
-}
-
-.desktop-icon-item {
-  user-select: none;
-  touch-action: none;
 }
 
 .windows-container {
@@ -31,15 +30,6 @@
 
 .windows-container > * {
   pointer-events: auto;
-}
-
-/* Selection Marquee */
-.selection-marquee {
-  position: fixed;
-  border: 1px dotted #fff;
-  background-color: rgba(0, 0, 128, 0.3);
-  pointer-events: none;
-  z-index: 9997;
 }
 
 /* Fixed Taskbar Wrapper to handle mobile offsets reliably */

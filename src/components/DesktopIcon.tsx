@@ -5,34 +5,14 @@ interface DesktopIconProps {
   id: string;
   label: string;
   onDoubleClick: (id: string) => void;
-  onSelect?: (id: string, multi: boolean) => void;
-  isSelected?: boolean;
   icon?: string;
-  position?: { x: number; y: number };
 }
 
-const DesktopIcon: React.FC<DesktopIconProps> = ({ 
-  id, 
-  label, 
-  onDoubleClick, 
-  onSelect,
-  isSelected,
-  icon,
-  position 
-}) => {
-  const handleMouseDown = (e: React.MouseEvent) => {
-    // Only handle selection if it's a left click
-    if (e.button !== 0) return;
-    e.stopPropagation();
-    onSelect?.(id, e.ctrlKey || e.metaKey || e.shiftKey);
-  };
-
+const DesktopIcon: React.FC<DesktopIconProps> = ({ id, label, onDoubleClick, icon }) => {
   return (
     <div 
-      className={`${styles.container} ${isSelected ? styles.selected : ''}`} 
+      className={styles.container} 
       onDoubleClick={() => onDoubleClick(id)}
-      onMouseDown={handleMouseDown}
-      style={position ? { position: 'absolute', left: position.x, top: position.y, margin: 0 } : {}}
     >
       <div className={styles.iconPlaceholder}>
         {icon || '📁'}
