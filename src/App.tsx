@@ -15,6 +15,7 @@ import ProjectProperties from './apps/ProjectProperties'
 import Zombies from './apps/Zombies'
 import Solitaire from './apps/Solitaire'
 import NerfVR from './apps/NerfVR'
+import ControlPanel from './apps/ControlPanel'
 import BootScreen from './components/BootScreen'
 import ShutdownScreen from './components/ShutdownScreen'
 import Dialog from './components/Dialog'
@@ -45,6 +46,15 @@ function App() {
   const [isBooting, setIsBooting] = useState(true);
   const [isShuttingDown, setIsShuttingDown] = useState(false);
   const [isStartMenuOpen, setIsStartMenuOpen] = useState(false);
+
+  const [desktopBgColor, setDesktopBgColor] = useState(() => {
+    return localStorage.getItem('desktopBgColor') || '#008080';
+  });
+
+  const handleBgColorChange = (color: string) => {
+    setDesktopBgColor(color);
+    localStorage.setItem('desktopBgColor', color);
+  };
 
   const [windows, setWindows] = useState<WindowInfo[]>([
     {
@@ -180,6 +190,17 @@ function App() {
       icon: '🎯',
       defaultSize: { width: 600, height: 450 },
       initialPosition: { x: 100, y: 100 },
+    },
+    {
+      id: 'settings',
+      title: 'Control Panel',
+      isOpen: false,
+      isMinimized: false,
+      zIndex: 112,
+      content: <ControlPanel currentBgColor={desktopBgColor} onColorChange={handleBgColorChange} />,
+      icon: '⚙️',
+      defaultSize: { width: 400, height: 450 },
+      initialPosition: { x: 200, y: 150 },
     },
   ]);
 
@@ -319,7 +340,7 @@ function App() {
   }
 
   return (
-    <div className="desktop" onContextMenu={handleDesktopContextMenu}>
+    <div className="desktop" onContextMenu={handleDesktopContextMenu} style={{ backgroundColor: desktopBgColor }}>
       <div className="icons-container">
         {windows.filter(w => !w.hideFromMenu).map(w => (
           <DesktopIcon 
