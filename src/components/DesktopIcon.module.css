@@ -17,6 +17,15 @@
   outline: 1px dotted var(--win-white);
 }
 
+.container.selected {
+  background-color: rgba(0, 0, 128, 0.5); /* Win95 selection blue */
+  outline: 1px dotted var(--win-white);
+}
+
+.container.selected .label {
+  background-color: var(--win-blue);
+}
+
 .iconPlaceholder {
   width: 32px;
   height: 32px;

@@ -1,4 +1,5 @@
-import { useState, lazy, Suspense } from 'react'
+import { useState, lazy, Suspense, useRef, useEffect, useCallback } from 'react'
+import Draggable from 'react-draggable'
 import './App.css'
 import Taskbar from './components/Taskbar'
 import Window from './components/Window'
@@ -30,6 +31,12 @@ interface LaunchData {
   title?: string;
 }
 
+interface IconPosition {
+  id: string;
+  x: number;
+  y: number;
+}
+
 interface WindowInfo {
   id: string;
   title: string;
@@ -48,9 +55,28 @@ function App() {
   const [isShuttingDown, setIsShuttingDown] = useState(false);
   const [isStartMenuOpen, setIsStartMenuOpen] = useState(false);
 
+  // Desktop State
   const [desktopBgColor, setDesktopBgColor] = useState(() => {
     return localStorage.getItem('desktopBgColor') || '#008080';
   });
+
+  const filteredWindows = windows.filter(w => !w.hideFromMenu);
+
+  const [iconPositions, setIconPositions] = useState<IconPosition[]>(() => {
+    const saved = localStorage.getItem('iconPositions');
+    if (saved) return JSON.parse(saved);
+    
+    // Initial grid calculation (column-first like Win95)
+    return filteredWindows.map((w, i) => ({
+      id: w.id,
+      x: 10 + (Math.floor(i / 6) * 90),
+      y: 10 + ((i % 6) * 90),
+    }));
+  });
+
+  const [selectedIconIds, setSelectedIconIds] = useState<string[]>([]);
+  const [marquee, setMarquee] = useState<{ startX: number, startY: number, currentX: number, currentY: number } | null>(null);
+  const isDraggingMarquee = useRef(false);
 
   const handleBgColorChange = (color: string) => {
     setDesktopBgColor(color);
@@ -307,6 +333,115 @@ function App() {
     setIsStartMenuOpen(!isStartMenuOpen);
   };
 
+  // --- Desktop Handlers ---
+
+  const handleDesktopMouseDown = (e: React.MouseEvent) => {
+    if (e.button !== 0) return; // Only left click
+    
+    // Clear selection if clicking desktop directly (not an icon)
+    if ((e.target as HTMLElement).classList.contains('desktop') || 
+        (e.target as HTMLElement).classList.contains('icons-container')) {
+      setSelectedIconIds([]);
+    } else {
+      return; // Clicking an icon or window
+    }
+
+    setMarquee({ startX: e.clientX, startY: e.clientY, currentX: e.clientX, currentY: e.clientY });
+    isDraggingMarquee.current = true;
+  };
+
+  const handleDesktopMouseMove = useCallback((e: MouseEvent) => {
+    if (!isDraggingMarquee.current || !marquee) return;
+    
+    setMarquee(prev => prev ? { ...prev, currentX: e.clientX, currentY: e.clientY } : null);
+
+    // Use latest marquee values from state ref would be better, but we'll use local calc
+    const left = Math.min(marquee.startX, e.clientX);
+    const top = Math.min(marquee.startY, e.clientY);
+    const right = Math.max(marquee.startX, e.clientX);
+    const bottom = Math.max(marquee.startY, e.clientY);
+
+    const icons = document.querySelectorAll('.desktop-icon-item');
+    const selected: string[] = [];
+
+    icons.forEach((iconEl) => {
+      const rect = iconEl.getBoundingClientRect();
+      const id = iconEl.getAttribute('data-id');
+      if (!id) return;
+
+      if (
+        rect.left < right &&
+        rect.right > left &&
+        rect.top < bottom &&
+        rect.bottom > top
+      ) {
+        selected.push(id);
+      }
+    });
+
+    setSelectedIconIds(selected);
+  }, [marquee]);
+
+  const handleDesktopMouseUp = useCallback(() => {
+    isDraggingMarquee.current = false;
+    setMarquee(null);
+  }, []);
+
+  useEffect(() => {
+    if (marquee) {
+      window.addEventListener('mousemove', handleDesktopMouseMove);
+      window.addEventListener('mouseup', handleDesktopMouseUp);
+    }
+    return () => {
+      window.removeEventListener('mousemove', handleDesktopMouseMove);
+      window.removeEventListener('mouseup', handleDesktopMouseUp);
+    };
+  }, [marquee, handleDesktopMouseMove, handleDesktopMouseUp]);
+
+  const handleIconSelect = (id: string, multi: boolean) => {
+    if (multi) {
+      setSelectedIconIds(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]);
+    } else {
+      setSelectedIconIds([id]);
+    }
+  };
+
+  const handleIconDrag = (id: string, e: any, data: { x: number, y: number }) => {
+    setIconPositions(prev => {
+      const iconPos = prev.find(p => p.id === id);
+      if (!iconPos) return prev;
+
+      const deltaX = data.x - iconPos.x;
+      const deltaY = data.y - iconPos.y;
+
+      const newPositions = [...prev];
+      if (selectedIconIds.includes(id)) {
+        // Move all selected icons
+        selectedIconIds.forEach(selectedId => {
+          const idx = newPositions.findIndex(p => p.id === selectedId);
+          if (idx !== -1) {
+            newPositions[idx] = { 
+              id: selectedId, 
+              x: newPositions[idx].x + deltaX, 
+              y: newPositions[idx].y + deltaY 
+            };
+          }
+        });
+      } else {
+        // Move single icon
+        const idx = newPositions.findIndex(p => p.id === id);
+        if (idx !== -1) {
+          newPositions[idx] = { id, x: data.x, y: data.y };
+        }
+      }
+      return newPositions;
+    });
+  };
+
+  const handleIconStop = () => {
+    localStorage.setItem('iconPositions', JSON.stringify(iconPositions));
+  };
+
   const handleTaskbarContextMenu = (id: string, x: number, y: number) => {
     setContextMenu({
       x,
@@ -341,18 +476,50 @@ function App() {
     return <BootScreen onBoot={handleBoot} />;
   }
 
+  const marqueeStyle = marquee ? {
+    left: Math.min(marquee.startX, marquee.currentX),
+    top: Math.min(marquee.startY, marquee.currentY),
+    width: Math.abs(marquee.currentX - marquee.startX),
+    height: Math.abs(marquee.currentY - marquee.startY),
+  } : null;
+
   return (
-    <div className="desktop" onContextMenu={handleDesktopContextMenu} style={{ backgroundColor: desktopBgColor }}>
+    <div 
+      className="desktop" 
+      onContextMenu={handleDesktopContextMenu} 
+      onMouseDown={handleDesktopMouseDown}
+      style={{ backgroundColor: desktopBgColor }}
+    >
       <div className="icons-container">
-        {windows.filter(w => !w.hideFromMenu).map(w => (
-          <DesktopIcon 
-            key={w.id}
-            id={w.id} 
-            label={w.title.split(' - ')[0]} 
-            onDoubleClick={toggleWindow} 
-            icon={w.icon} 
-          />
-        ))}
+        {filteredWindows.map(w => {
+          const pos = iconPositions.find(p => p.id === w.id) || { x: 0, y: 0 };
+          return (
+            <Draggable
+              key={w.id}
+              handle={`.desktop-icon-handle-${w.id}`}
+              position={{ x: pos.x, y: pos.y }}
+              onDrag={(e, data) => handleIconDrag(w.id, e, data)}
+              onStop={handleIconStop}
+            >
+              <div 
+                className="desktop-icon-item" 
+                data-id={w.id}
+                style={{ position: 'absolute', width: 'fit-content' }}
+              >
+                <div className={`desktop-icon-handle-${w.id}`}>
+                  <DesktopIcon 
+                    id={w.id} 
+                    label={w.title.split(' - ')[0]} 
+                    onDoubleClick={toggleWindow} 
+                    onSelect={handleIconSelect}
+                    isSelected={selectedIconIds.includes(w.id)}
+                    icon={w.icon} 
+                  />
+                </div>
+              </div>
+            </Draggable>
+          );
+        })}
       </div>
       
       <div className="windows-container">
@@ -421,6 +588,10 @@ function App() {
           items={contextMenu.items} 
           onClose={() => setContextMenu(null)} 
         />
+      )}
+
+      {marqueeStyle && (
+        <div className="selection-marquee" style={marqueeStyle} />
       )}
     </div>
   )
