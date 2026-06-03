@@ -12,6 +12,7 @@ interface TaskbarProps {
   }>;
   activeWindowId: string | null;
   onTaskClick: (id: string) => void;
+  onRightClick?: (id: string, x: number, y: number) => void;
   onStartClick: () => void;
   isStartMenuOpen: boolean;
 }
@@ -20,6 +21,7 @@ const Taskbar: React.FC<TaskbarProps> = ({
   windows, 
   activeWindowId, 
   onTaskClick, 
+  onRightClick,
   onStartClick,
   isStartMenuOpen 
 }) => {
@@ -52,6 +54,10 @@ const Taskbar: React.FC<TaskbarProps> = ({
             key={w.id} 
             className={`${styles.taskButton} ${activeWindowId === w.id ? styles.activeTask : ''}`}
             onClick={() => onTaskClick(w.id)}
+            onContextMenu={(e) => {
+              e.preventDefault();
+              onRightClick?.(w.id, e.clientX, e.clientY);
+            }}
           >
             <span className={styles.taskIcon}>{w.icon}</span>
             <span className={styles.taskTitle}>{w.title}</span>

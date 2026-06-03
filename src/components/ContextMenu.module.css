@@ -1,0 +1,56 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9998;
+  background: transparent;
+}
+
+.menu {
+  position: fixed;
+  z-index: 9999;
+  background-color: var(--win-gray);
+  border: 2px solid;
+  border-color: var(--win-white) var(--win-dark-gray) var(--win-dark-gray) var(--win-white);
+  box-shadow: 1px 1px var(--win-black);
+  padding: 2px;
+  min-width: 150px;
+}
+
+.menuItem {
+  padding: 4px 20px 4px 10px;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: default;
+  color: var(--win-black);
+  position: relative;
+}
+
+.menuItem:hover {
+  background-color: var(--win-blue);
+  color: white;
+}
+
+.menuItem.disabled {
+  color: var(--win-dark-gray);
+}
+
+.menuItem.disabled:hover {
+  background-color: transparent;
+}
+
+.divider {
+  height: 1px;
+  background-color: var(--win-dark-gray);
+  margin: 2px 2px;
+  box-shadow: 0 1px var(--win-white);
+}
+
+.shortcut {
+  margin-left: auto;
+  padding-left: 20px;
+}

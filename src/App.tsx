@@ -18,6 +18,7 @@ import NerfVR from './apps/NerfVR'
 import BootScreen from './components/BootScreen'
 import ShutdownScreen from './components/ShutdownScreen'
 import Dialog from './components/Dialog'
+import ContextMenu, { ContextMenuItem } from './components/ContextMenu'
 import { playSound } from './utils/sounds'
 
 import StartMenu from './components/StartMenu'
@@ -184,10 +185,31 @@ function App() {
 
   const [activeWindowId, setActiveWindowId] = useState<string | null>(null);
   const [dialog, setDialog] = useState<{ title: string; message: string; onOk: () => void } | null>(null);
+  const [contextMenu, setContextMenu] = useState<{ x: number; y: number; items: ContextMenuItem[] } | null>(null);
 
   const handleBoot = () => {
     setIsBooting(false);
     playSound('startup');
+  };
+
+  const handleDesktopContextMenu = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setContextMenu({
+      x: e.clientX,
+      y: e.clientY,
+      items: [
+        { id: 'view', label: 'View', onClick: () => {}, disabled: true },
+        { id: 'arrange', label: 'Arrange Icons', onClick: () => {}, disabled: true },
+        { id: 'lineup', label: 'Line Up Icons', onClick: () => {}, disabled: true },
+        { id: 'd1', label: '', onClick: () => {}, isDivider: true },
+        { id: 'paste', label: 'Paste', onClick: () => {}, disabled: true },
+        { id: 'paste-shortcut', label: 'Paste Shortcut', onClick: () => {}, disabled: true },
+        { id: 'd2', label: '', onClick: () => {}, isDivider: true },
+        { id: 'new', label: 'New', onClick: () => {}, disabled: true },
+        { id: 'd3', label: '', onClick: () => {}, isDivider: true },
+        { id: 'properties', label: 'Properties', onClick: () => focusWindow('portfolio-properties') },
+      ]
+    });
   };
 
   const showDialog = (title: string, message: string, onOk: () => void) => {
@@ -262,6 +284,20 @@ function App() {
     setIsStartMenuOpen(!isStartMenuOpen);
   };
 
+  const handleTaskbarContextMenu = (id: string, x: number, y: number) => {
+    setContextMenu({
+      x,
+      y: y - 100, // Offset upwards since taskbar is at bottom
+      items: [
+        { id: 'restore', label: 'Restore', onClick: () => focusWindow(id), disabled: activeWindowId === id },
+        { id: 'minimize', label: 'Minimize', onClick: () => minimizeWindow(id) },
+        { id: 'maximize', label: 'Maximize', onClick: () => {}, disabled: true },
+        { id: 'd1', label: '', onClick: () => {}, isDivider: true },
+        { id: 'close', label: 'Close', onClick: () => closeWindow(id) },
+      ]
+    });
+  };
+
   const handleShutdown = () => {
     setIsStartMenuOpen(false);
     setIsShuttingDown(true);
@@ -283,7 +319,7 @@ function App() {
   }
 
   return (
-    <div className="desktop">
+    <div className="desktop" onContextMenu={handleDesktopContextMenu}>
       <div className="icons-container">
         {windows.filter(w => !w.hideFromMenu).map(w => (
           <DesktopIcon 
@@ -328,6 +364,7 @@ function App() {
           windows={windows.filter(w => !w.hideFromMenu || w.isOpen)} 
           activeWindowId={activeWindowId} 
           onTaskClick={toggleWindow}
+          onRightClick={handleTaskbarContextMenu}
           onStartClick={toggleStartMenu}
           isStartMenuOpen={isStartMenuOpen}
         />
@@ -338,6 +375,15 @@ function App() {
           title={dialog.title} 
           message={dialog.message} 
           onOk={dialog.onOk} 
+        />
+      )}
+
+      {contextMenu && (
+        <ContextMenu 
+          x={contextMenu.x} 
+          y={contextMenu.y} 
+          items={contextMenu.items} 
+          onClose={() => setContextMenu(null)} 
         />
       )}
     </div>
