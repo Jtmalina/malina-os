@@ -32,6 +32,8 @@ const VIDEOS = [
   }
 ];
 
+const DREAD_TIDE_URL = 'https://dread-tide.vercel.app/game.html';
+
 const Browser: React.FC<BrowserProps> = ({ initialUrl }) => {
   const [url, setUrl] = useState(initialUrl || 'malina://home');
   const [inputValue, setInputValue] = useState(initialUrl || 'malina://home');
@@ -211,6 +213,33 @@ const Browser: React.FC<BrowserProps> = ({ initialUrl }) => {
     );
   };
 
+  const renderDreadTide = () => {
+    return (
+      <div className={styles.dreadtide}>
+        <div className={styles.dtHero}>
+          <div className={styles.dtPoster}>🌊</div>
+          <div className={styles.dtTitle}>DREAD TIDE</div>
+          <div className={styles.dtSubtitle}>Raft Wave Defense</div>
+        </div>
+        <div className={styles.dtBody}>
+          <p className={styles.dtBlurb}>
+            Survive on a drifting raft. Hook floating debris, build defenses, and hold
+            the line against the rising tide — all the way to the Barnacle Titan.
+          </p>
+          <div className={styles.dtSpecs}>
+            <span>🎮 Wave Defense</span>
+            <span>⚙️ Godot 4</span>
+            <span>🖥️ Plays in browser</span>
+          </div>
+          <button className={styles.dtPlayButton} onClick={() => window.open(DREAD_TIDE_URL, '_blank')}>
+            ▶ Play Now
+          </button>
+          <div className={styles.dtNote}>Launches in a new window • Best experienced in Chrome</div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className={styles.browser}>
       <div className={styles.toolbar}>
@@ -285,6 +314,8 @@ const Browser: React.FC<BrowserProps> = ({ initialUrl }) => {
           renderJulianTube()
         ) : url === 'malina://chat' ? (
           renderMalinaChat()
+        ) : url === 'malina://dreadtide' ? (
+          renderDreadTide()
         ) : isError ? (
           <div className={styles.errorView}>
             <div className={styles.errorIcon}>🚫</div>

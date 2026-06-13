@@ -44,8 +44,15 @@ const Projects: React.FC<ProjectsProps> = ({ onLaunch }) => {
       },
     ],
     Games: [
-      { 
-        name: 'City Streets', 
+      {
+        name: 'Dread Tide',
+        type: 'Executable',
+        size: '15 MB',
+        icon: '🌊',
+        launchApp: 'dread-tide'
+      },
+      {
+        name: 'City Streets',
         type: 'Executable', 
         size: '1.2 GB', 
         icon: '🧟', 

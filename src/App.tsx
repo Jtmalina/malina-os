@@ -193,6 +193,17 @@ function App() {
       initialPosition: { x: 100, y: 100 },
     },
     {
+      id: 'dread-tide',
+      title: 'Dread Tide',
+      isOpen: false,
+      isMinimized: false,
+      zIndex: 113,
+      content: <Browser initialUrl="malina://dreadtide" />,
+      icon: '🌊',
+      defaultSize: { width: 560, height: 620 },
+      initialPosition: { x: 220, y: 60 },
+    },
+    {
       id: 'settings',
       title: 'Control Panel',
       isOpen: false,
