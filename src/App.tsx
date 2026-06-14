@@ -19,6 +19,7 @@ const MediaPlayer = lazy(() => import('./apps/MediaPlayer'))
 const Minesweeper = lazy(() => import('./apps/Minesweeper'))
 const Marathon = lazy(() => import('./apps/Marathon'))
 const Browser = lazy(() => import('./apps/Browser'))
+const DreadTide = lazy(() => import('./apps/DreadTide'))
 const ProjectProperties = lazy(() => import('./apps/ProjectProperties'))
 const Zombies = lazy(() => import('./apps/Zombies'))
 const Solitaire = lazy(() => import('./apps/Solitaire'))
@@ -41,7 +42,13 @@ interface WindowInfo {
   defaultSize?: { width: number; height: number };
   initialPosition?: { x: number; y: number };
   hideFromMenu?: boolean;
+  exe?: boolean;
 }
+
+const getIconLabel = (w: WindowInfo) => {
+  const base = w.title.split(' - ')[0];
+  return w.exe ? `${base}.exe` : base;
+};
 
 function App() {
   const [isBooting, setIsBooting] = useState(true);
@@ -135,6 +142,7 @@ function App() {
       icon: '🔫',
       defaultSize: { width: 600, height: 400 },
       initialPosition: { x: 50, y: 50 },
+      exe: true,
     },
     {
       id: 'browser',
@@ -169,6 +177,7 @@ function App() {
       icon: '🧟',
       defaultSize: { width: 650, height: 450 },
       initialPosition: { x: 80, y: 80 },
+      exe: true,
     },
     {
       id: 'solitaire',
@@ -191,6 +200,7 @@ function App() {
       icon: '🎯',
       defaultSize: { width: 600, height: 450 },
       initialPosition: { x: 100, y: 100 },
+      exe: true,
     },
     {
       id: 'dread-tide',
@@ -198,10 +208,11 @@ function App() {
       isOpen: false,
       isMinimized: false,
       zIndex: 113,
-      content: <Browser initialUrl="malina://dreadtide" />,
+      content: <DreadTide />,
       icon: '🌊',
-      defaultSize: { width: 560, height: 620 },
+      defaultSize: { width: 540, height: 560 },
       initialPosition: { x: 220, y: 60 },
+      exe: true,
     },
     {
       id: 'settings',
@@ -359,7 +370,7 @@ function App() {
           <DesktopIcon 
             key={w.id}
             id={w.id} 
-            label={w.title.split(' - ')[0]} 
+            label={getIconLabel(w)}
             onDoubleClick={toggleWindow} 
             icon={w.icon} 
           />
